@@ -129,9 +129,9 @@ return;
 case 0:
 //C
 this.state = 1;
- //BA.debugLineNum = 250;BA.debugLine="Toast.Show(\"Start Grabbing\")";
+ //BA.debugLineNum = 260;BA.debugLine="Toast.Show(\"Start Grabbing\")";
 parent._toast._show /*void*/ ("Start Grabbing");
- //BA.debugLineNum = 252;BA.debugLine="For Each uri As String In PrimaryWordsLV.Items";
+ //BA.debugLineNum = 262;BA.debugLine="For Each uri As String In PrimaryWordsLV.Items";
 if (true) break;
 
 case 1:
@@ -160,23 +160,23 @@ if (true) break;
 case 3:
 //C
 this.state = 4;
- //BA.debugLineNum = 253;BA.debugLine="Dim hc As OkHttpClient";
+ //BA.debugLineNum = 263;BA.debugLine="Dim hc As OkHttpClient";
 _hc = new anywheresoftware.b4h.okhttp.OkHttpClientWrapper();
- //BA.debugLineNum = 254;BA.debugLine="hc.Initialize(\"hc\")";
+ //BA.debugLineNum = 264;BA.debugLine="hc.Initialize(\"hc\")";
 _hc.Initialize("hc");
- //BA.debugLineNum = 255;BA.debugLine="Dim req As OkHttpRequest";
+ //BA.debugLineNum = 265;BA.debugLine="Dim req As OkHttpRequest";
 _req = new anywheresoftware.b4h.okhttp.OkHttpClientWrapper.OkHttpRequest();
- //BA.debugLineNum = 256;BA.debugLine="req.InitializeHead(uri)";
+ //BA.debugLineNum = 266;BA.debugLine="req.InitializeHead(uri)";
 _req.InitializeHead(_uri);
- //BA.debugLineNum = 257;BA.debugLine="hc.Execute(req, TaskIDNum)";
+ //BA.debugLineNum = 267;BA.debugLine="hc.Execute(req, TaskIDNum)";
 _hc.Execute(ba,_req,parent._taskidnum);
- //BA.debugLineNum = 259;BA.debugLine="TaskIds.Put(TaskIDNum,uri)";
+ //BA.debugLineNum = 269;BA.debugLine="TaskIds.Put(TaskIDNum,uri)";
 parent._taskids.Put((Object)(parent._taskidnum),(Object)(_uri));
- //BA.debugLineNum = 260;BA.debugLine="TaskIDNum = TaskIDNum+1";
+ //BA.debugLineNum = 270;BA.debugLine="TaskIDNum = TaskIDNum+1";
 parent._taskidnum = (int) (parent._taskidnum+1);
- //BA.debugLineNum = 262;BA.debugLine="ScanedStatusLbl.Text = TaskIDNum&\" Item Scanned\"";
+ //BA.debugLineNum = 272;BA.debugLine="ScanedStatusLbl.Text = TaskIDNum&\" Item Scanned\"";
 parent._scanedstatuslbl.setText(BA.NumberToString(parent._taskidnum)+" Item Scanned");
- //BA.debugLineNum = 264;BA.debugLine="Sleep(1110)";
+ //BA.debugLineNum = 274;BA.debugLine="Sleep(1110)";
 anywheresoftware.b4a.keywords.Common.Sleep(ba,this,(int) (1110));
 this.state = 13;
 return;
@@ -184,7 +184,7 @@ case 13:
 //C
 this.state = 4;
 ;
- //BA.debugLineNum = 266;BA.debugLine="If StartSearchBtn.Tag==\"stopped\" Then Exit";
+ //BA.debugLineNum = 276;BA.debugLine="If StartSearchBtn.Tag==\"stopped\" Then Exit";
 if (true) break;
 
 case 4:
@@ -212,13 +212,13 @@ case 10:
 //C
 this.state = -1;
 ;
- //BA.debugLineNum = 270;BA.debugLine="xui.MsgboxAsync(\"Grabb Ended...\", \"ENDED\")";
+ //BA.debugLineNum = 280;BA.debugLine="xui.MsgboxAsync(\"Grabb Ended...\", \"ENDED\")";
 parent._xui.MsgboxAsync(ba,"Grabb Ended...","ENDED");
- //BA.debugLineNum = 271;BA.debugLine="StartSearchBtn.Text=\"Start Mission\"";
+ //BA.debugLineNum = 281;BA.debugLine="StartSearchBtn.Text=\"Start Mission\"";
 parent._startsearchbtn.setText("Start Mission");
- //BA.debugLineNum = 272;BA.debugLine="StartSearchBtn.Tag=\"stopped\"";
+ //BA.debugLineNum = 282;BA.debugLine="StartSearchBtn.Tag=\"stopped\"";
 parent._startsearchbtn.setTag((Object)("stopped"));
- //BA.debugLineNum = 274;BA.debugLine="End Sub";
+ //BA.debugLineNum = 284;BA.debugLine="End Sub";
 if (true) break;
 
             }
@@ -226,37 +226,37 @@ if (true) break;
     }
 }
 public static String  _hc_responseerror(anywheresoftware.b4h.okhttp.OkHttpClientWrapper.OkHttpResponse _response,String _reason,int _statuscode,int _taskid) throws Exception{
- //BA.debugLineNum = 316;BA.debugLine="Sub hc_ResponseError (Response As OkHttpResponse,";
- //BA.debugLineNum = 317;BA.debugLine="Log(\"error: \" & StatusCode&\" .:|:. \"&TaskIds.Get(";
+ //BA.debugLineNum = 326;BA.debugLine="Sub hc_ResponseError (Response As OkHttpResponse,";
+ //BA.debugLineNum = 327;BA.debugLine="Log(\"error: \" & StatusCode&\" .:|:. \"&TaskIds.Get(";
 anywheresoftware.b4a.keywords.Common.LogImpl("8851969","error: "+BA.NumberToString(_statuscode)+" .:|:. "+BA.ObjectToString(_taskids.Get((Object)(_taskid))),0);
- //BA.debugLineNum = 318;BA.debugLine="If MenuBar1.Tag=\"Show_Errors\" Then";
+ //BA.debugLineNum = 328;BA.debugLine="If MenuBar1.Tag=\"Show_Errors\" Then";
 if ((_menubar1.getTag()).equals((Object)("Show_Errors"))) { 
- //BA.debugLineNum = 319;BA.debugLine="ResultsLV.Items.Add(\"error: \" &StatusCode&\" .:|:";
+ //BA.debugLineNum = 329;BA.debugLine="ResultsLV.Items.Add(\"error: \" &StatusCode&\" .:|:";
 _resultslv.getItems().Add((Object)("error: "+BA.NumberToString(_statuscode)+" .:|:. "+BA.ObjectToString(_taskids.Get((Object)(_taskid)))));
  };
- //BA.debugLineNum = 321;BA.debugLine="Response.Release";
+ //BA.debugLineNum = 331;BA.debugLine="Response.Release";
 _response.Release();
- //BA.debugLineNum = 322;BA.debugLine="End Sub";
+ //BA.debugLineNum = 332;BA.debugLine="End Sub";
 return "";
 }
 public static String  _hc_responsesuccess(anywheresoftware.b4h.okhttp.OkHttpClientWrapper.OkHttpResponse _response,int _taskid) throws Exception{
- //BA.debugLineNum = 279;BA.debugLine="Sub hc_ResponseSuccess (Response As OkHttpResponse";
- //BA.debugLineNum = 280;BA.debugLine="If Response.ContentType==\"application/zip\" Then";
+ //BA.debugLineNum = 289;BA.debugLine="Sub hc_ResponseSuccess (Response As OkHttpResponse";
+ //BA.debugLineNum = 290;BA.debugLine="If Response.ContentType==\"application/zip\" Then";
 if ((_response.getContentType()).equals("application/zip")) { 
- //BA.debugLineNum = 282;BA.debugLine="ResultsLV.Items.Add(Response.StatusCode&\" .:|:.";
+ //BA.debugLineNum = 292;BA.debugLine="ResultsLV.Items.Add(Response.StatusCode&\" .:|:.";
 _resultslv.getItems().Add((Object)(BA.NumberToString(_response.getStatusCode())+" .:|:. type: "+_response.getContentType()+" .:|:. "+BA.ObjectToString(_taskids.Get((Object)(_taskid)))));
  }else {
- //BA.debugLineNum = 308;BA.debugLine="If MenuBar1.Tag=\"Show_Errors\" Then";
+ //BA.debugLineNum = 318;BA.debugLine="If MenuBar1.Tag=\"Show_Errors\" Then";
 if ((_menubar1.getTag()).equals((Object)("Show_Errors"))) { 
- //BA.debugLineNum = 309;BA.debugLine="ResultsLV.Items.Add(Response.StatusCode&\" .:|:.";
+ //BA.debugLineNum = 319;BA.debugLine="ResultsLV.Items.Add(Response.StatusCode&\" .:|:.";
 _resultslv.getItems().Add((Object)(BA.NumberToString(_response.getStatusCode())+" .:|:. type: "+_response.getContentType()+" .:|:. length:"+BA.NumberToString(_response.getContentLength())+" .:|:. "+BA.ObjectToString(_taskids.Get((Object)(_taskid)))));
- //BA.debugLineNum = 310;BA.debugLine="Log(\"Fake OK 200 on : \"&TaskIds.Get(TaskID))";
+ //BA.debugLineNum = 320;BA.debugLine="Log(\"Fake OK 200 on : \"&TaskIds.Get(TaskID))";
 anywheresoftware.b4a.keywords.Common.LogImpl("8786463","Fake OK 200 on : "+BA.ObjectToString(_taskids.Get((Object)(_taskid))),0);
  };
  };
- //BA.debugLineNum = 313;BA.debugLine="Response.Release";
+ //BA.debugLineNum = 323;BA.debugLine="Response.Release";
 _response.Release();
- //BA.debugLineNum = 314;BA.debugLine="End Sub";
+ //BA.debugLineNum = 324;BA.debugLine="End Sub";
 return "";
 }
 public static String  _menubar1_action() throws Exception{
@@ -359,37 +359,39 @@ _loadingiv = new anywheresoftware.b4j.objects.ImageViewWrapper();
 return "";
 }
 public static String  _resultslv_selectedindexchanged(int _index) throws Exception{
- //BA.debugLineNum = 324;BA.debugLine="Private Sub ResultsLV_SelectedIndexChanged(Index A";
- //BA.debugLineNum = 325;BA.debugLine="Toast.Show(\"Link Copied to ClipBoard ...\")";
+ //BA.debugLineNum = 334;BA.debugLine="Private Sub ResultsLV_SelectedIndexChanged(Index A";
+ //BA.debugLineNum = 335;BA.debugLine="Toast.Show(\"Link Copied to ClipBoard ...\")";
 _toast._show /*void*/ ("Link Copied to ClipBoard ...");
- //BA.debugLineNum = 326;BA.debugLine="fx.Clipboard.SetString(TaskIds.Get(Index))";
+ //BA.debugLineNum = 336;BA.debugLine="fx.Clipboard.SetString(TaskIds.Get(Index))";
 _fx.Clipboard.SetString(BA.ObjectToString(_taskids.Get((Object)(_index))));
- //BA.debugLineNum = 327;BA.debugLine="End Sub";
+ //BA.debugLineNum = 337;BA.debugLine="End Sub";
 return "";
 }
 public static String  _selectmultisitebtn_click() throws Exception{
 anywheresoftware.b4j.objects.FileChooserWrapper _fc = null;
 String _selected = "";
- //BA.debugLineNum = 330;BA.debugLine="Private Sub SelectMultiSiteBtn_Click";
- //BA.debugLineNum = 332;BA.debugLine="Dim FC As FileChooser";
+ //BA.debugLineNum = 340;BA.debugLine="Private Sub SelectMultiSiteBtn_Click";
+ //BA.debugLineNum = 342;BA.debugLine="fx.ShowExternalDocument(\"https://api.hackertarget";
+_fx.ShowExternalDocument("https://api.hackertarget.com/reverseiplookup/?q=example.com");
+ //BA.debugLineNum = 344;BA.debugLine="Dim FC As FileChooser";
 _fc = new anywheresoftware.b4j.objects.FileChooserWrapper();
- //BA.debugLineNum = 333;BA.debugLine="FC.Initialize";
+ //BA.debugLineNum = 345;BA.debugLine="FC.Initialize";
 _fc.Initialize();
- //BA.debugLineNum = 334;BA.debugLine="FC.Title = \"Select the text file to check multi s";
+ //BA.debugLineNum = 346;BA.debugLine="FC.Title = \"Select the text file to check multi s";
 _fc.setTitle("Select the text file to check multi sites");
- //BA.debugLineNum = 335;BA.debugLine="FC.SetExtensionFilter(\"TXT\", Array As String(\"*.t";
+ //BA.debugLineNum = 347;BA.debugLine="FC.SetExtensionFilter(\"TXT\", Array As String(\"*.t";
 _fc.SetExtensionFilter("TXT",anywheresoftware.b4a.keywords.Common.ArrayToList(new String[]{"*.txt"}));
- //BA.debugLineNum = 336;BA.debugLine="Dim selected As String = FC.ShowOpen(MainForm)";
+ //BA.debugLineNum = 348;BA.debugLine="Dim selected As String = FC.ShowOpen(MainForm)";
 _selected = _fc.ShowOpen(_mainform);
- //BA.debugLineNum = 337;BA.debugLine="Log(selected)";
-anywheresoftware.b4a.keywords.Common.LogImpl("8983047",_selected,0);
- //BA.debugLineNum = 339;BA.debugLine="UrlEt.Tag=\"list\"";
+ //BA.debugLineNum = 349;BA.debugLine="Log(selected)";
+anywheresoftware.b4a.keywords.Common.LogImpl("8983049",_selected,0);
+ //BA.debugLineNum = 351;BA.debugLine="UrlEt.Tag=\"list\"";
 _urlet.setTag((Object)("list"));
- //BA.debugLineNum = 340;BA.debugLine="UrlEt.Text = selected";
+ //BA.debugLineNum = 352;BA.debugLine="UrlEt.Text = selected";
 _urlet.setText(_selected);
- //BA.debugLineNum = 342;BA.debugLine="UrlEt_Action";
+ //BA.debugLineNum = 354;BA.debugLine="UrlEt_Action";
 _urlet_action();
- //BA.debugLineNum = 344;BA.debugLine="End Sub";
+ //BA.debugLineNum = 356;BA.debugLine="End Sub";
 return "";
 }
 public static String  _startsearchbtn_click() throws Exception{
@@ -597,61 +599,81 @@ _tempdash = _tempdash.replace("https://","");
 _tempdash = _tempdash.substring((int) (0),_tempdash.lastIndexOf("."));
  //BA.debugLineNum = 210;BA.debugLine="Log(tempdash&\"  has dash\")";
 anywheresoftware.b4a.keywords.Common.LogImpl("8655382",_tempdash+"  has dash",0);
- //BA.debugLineNum = 211;BA.debugLine="Dim components() As String";
+ //BA.debugLineNum = 211;BA.debugLine="ListNames.Add(tempdash)";
+_listnames.Add((Object)(_tempdash));
+ //BA.debugLineNum = 212;BA.debugLine="ListNames.Add(tempdash&\"-bck\")";
+_listnames.Add((Object)(_tempdash+"-bck"));
+ //BA.debugLineNum = 213;BA.debugLine="ListNames.Add(tempdash&\"-backup\")";
+_listnames.Add((Object)(_tempdash+"-backup"));
+ //BA.debugLineNum = 214;BA.debugLine="ListNames.Add(tempdash&\"_backup\")";
+_listnames.Add((Object)(_tempdash+"_backup"));
+ //BA.debugLineNum = 215;BA.debugLine="ListNames.Add(tempdash&\"_bck\")";
+_listnames.Add((Object)(_tempdash+"_bck"));
+ //BA.debugLineNum = 216;BA.debugLine="Dim components() As String";
 _components = new String[(int) (0)];
 java.util.Arrays.fill(_components,"");
- //BA.debugLineNum = 212;BA.debugLine="components = Regex.Split(\"-\", tempdash)";
+ //BA.debugLineNum = 217;BA.debugLine="components = Regex.Split(\"-\", tempdash)";
 _components = anywheresoftware.b4a.keywords.Common.Regex.Split("-",_tempdash);
- //BA.debugLineNum = 213;BA.debugLine="Log(components(0))";
-anywheresoftware.b4a.keywords.Common.LogImpl("8655385",_components[(int) (0)],0);
- //BA.debugLineNum = 214;BA.debugLine="ListNames.Add(components(0))";
+ //BA.debugLineNum = 218;BA.debugLine="Log(components(0))";
+anywheresoftware.b4a.keywords.Common.LogImpl("8655390",_components[(int) (0)],0);
+ //BA.debugLineNum = 219;BA.debugLine="ListNames.Add(components(0))";
 _listnames.Add((Object)(_components[(int) (0)]));
- //BA.debugLineNum = 215;BA.debugLine="Log(components(1))";
-anywheresoftware.b4a.keywords.Common.LogImpl("8655387",_components[(int) (1)],0);
- //BA.debugLineNum = 216;BA.debugLine="ListNames.Add(components(1))";
+ //BA.debugLineNum = 220;BA.debugLine="Log(components(1))";
+anywheresoftware.b4a.keywords.Common.LogImpl("8655392",_components[(int) (1)],0);
+ //BA.debugLineNum = 221;BA.debugLine="ListNames.Add(components(1))";
 _listnames.Add((Object)(_components[(int) (1)]));
  };
- //BA.debugLineNum = 219;BA.debugLine="If url.Contains(\"_\") Then";
+ //BA.debugLineNum = 224;BA.debugLine="If url.Contains(\"_\") Then";
 if (_url.contains("_")) { 
- //BA.debugLineNum = 220;BA.debugLine="Dim tempdash As String = url";
+ //BA.debugLineNum = 225;BA.debugLine="Dim tempdash As String = url";
 _tempdash = _url;
- //BA.debugLineNum = 221;BA.debugLine="tempdash = tempdash.Replace(\"http://\",\"\")";
+ //BA.debugLineNum = 226;BA.debugLine="tempdash = tempdash.Replace(\"http://\",\"\")";
 _tempdash = _tempdash.replace("http://","");
- //BA.debugLineNum = 222;BA.debugLine="tempdash = tempdash.Replace(\"https://\",\"\")";
+ //BA.debugLineNum = 227;BA.debugLine="tempdash = tempdash.Replace(\"https://\",\"\")";
 _tempdash = _tempdash.replace("https://","");
- //BA.debugLineNum = 223;BA.debugLine="tempdash = tempdash.SubString2(0,tempdash.LastI";
+ //BA.debugLineNum = 228;BA.debugLine="tempdash = tempdash.SubString2(0,tempdash.LastI";
 _tempdash = _tempdash.substring((int) (0),_tempdash.lastIndexOf("."));
- //BA.debugLineNum = 224;BA.debugLine="Log(tempdash&\"  has _________\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("8655396",_tempdash+"  has _________",0);
- //BA.debugLineNum = 225;BA.debugLine="Dim components() As String";
+ //BA.debugLineNum = 229;BA.debugLine="Log(tempdash&\"  has _________\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("8655401",_tempdash+"  has _________",0);
+ //BA.debugLineNum = 230;BA.debugLine="ListNames.Add(tempdash)";
+_listnames.Add((Object)(_tempdash));
+ //BA.debugLineNum = 231;BA.debugLine="ListNames.Add(tempdash&\"-bck\")";
+_listnames.Add((Object)(_tempdash+"-bck"));
+ //BA.debugLineNum = 232;BA.debugLine="ListNames.Add(tempdash&\"-backup\")";
+_listnames.Add((Object)(_tempdash+"-backup"));
+ //BA.debugLineNum = 233;BA.debugLine="ListNames.Add(tempdash&\"_backup\")";
+_listnames.Add((Object)(_tempdash+"_backup"));
+ //BA.debugLineNum = 234;BA.debugLine="ListNames.Add(tempdash&\"_bck\")";
+_listnames.Add((Object)(_tempdash+"_bck"));
+ //BA.debugLineNum = 235;BA.debugLine="Dim components() As String";
 _components = new String[(int) (0)];
 java.util.Arrays.fill(_components,"");
- //BA.debugLineNum = 226;BA.debugLine="components = Regex.Split(\"_\", tempdash)";
+ //BA.debugLineNum = 236;BA.debugLine="components = Regex.Split(\"_\", tempdash)";
 _components = anywheresoftware.b4a.keywords.Common.Regex.Split("_",_tempdash);
- //BA.debugLineNum = 227;BA.debugLine="Log(components(0))";
-anywheresoftware.b4a.keywords.Common.LogImpl("8655399",_components[(int) (0)],0);
- //BA.debugLineNum = 228;BA.debugLine="ListNames.Add(components(0))";
+ //BA.debugLineNum = 237;BA.debugLine="Log(components(0))";
+anywheresoftware.b4a.keywords.Common.LogImpl("8655409",_components[(int) (0)],0);
+ //BA.debugLineNum = 238;BA.debugLine="ListNames.Add(components(0))";
 _listnames.Add((Object)(_components[(int) (0)]));
- //BA.debugLineNum = 229;BA.debugLine="Log(components(1))";
-anywheresoftware.b4a.keywords.Common.LogImpl("8655401",_components[(int) (1)],0);
- //BA.debugLineNum = 230;BA.debugLine="ListNames.Add(components(1))";
+ //BA.debugLineNum = 239;BA.debugLine="Log(components(1))";
+anywheresoftware.b4a.keywords.Common.LogImpl("8655411",_components[(int) (1)],0);
+ //BA.debugLineNum = 240;BA.debugLine="ListNames.Add(components(1))";
 _listnames.Add((Object)(_components[(int) (1)]));
  };
- //BA.debugLineNum = 233;BA.debugLine="For Each ex As String In extentions";
+ //BA.debugLineNum = 243;BA.debugLine="For Each ex As String In extentions";
 {
-final String[] group37 = _extentions;
-final int groupLen37 = group37.length
-;int index37 = 0;
+final String[] group47 = _extentions;
+final int groupLen47 = group47.length
+;int index47 = 0;
 ;
-for (; index37 < groupLen37;index37++){
-_ex = group37[index37];
- //BA.debugLineNum = 234;BA.debugLine="For i = 0 To ListNames.Size - 1";
+for (; index47 < groupLen47;index47++){
+_ex = group47[index47];
+ //BA.debugLineNum = 244;BA.debugLine="For i = 0 To ListNames.Size - 1";
 {
-final int step38 = 1;
-final int limit38 = (int) (_listnames.getSize()-1);
+final int step48 = 1;
+final int limit48 = (int) (_listnames.getSize()-1);
 _i = (int) (0) ;
-for (;_i <= limit38 ;_i = _i + step38 ) {
- //BA.debugLineNum = 235;BA.debugLine="PrimaryWordsLV.Items.Add(url&\"/\"&ListNames.Get";
+for (;_i <= limit48 ;_i = _i + step48 ) {
+ //BA.debugLineNum = 245;BA.debugLine="PrimaryWordsLV.Items.Add(url&\"/\"&ListNames.Get";
 _primarywordslv.getItems().Add((Object)(_url+"/"+BA.ObjectToString(_listnames.Get(_i))+_ex));
  }
 };
@@ -659,7 +681,7 @@ _primarywordslv.getItems().Add((Object)(_url+"/"+BA.ObjectToString(_listnames.Ge
 };
  }
 };
- //BA.debugLineNum = 242;BA.debugLine="End Sub";
+ //BA.debugLineNum = 252;BA.debugLine="End Sub";
 return "";
 }
 public static String  _urlet_action() throws Exception{

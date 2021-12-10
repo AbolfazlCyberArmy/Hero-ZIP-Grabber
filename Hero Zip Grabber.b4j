@@ -233,6 +233,11 @@ Sub UpdateLists
 			tempdash = tempdash.Replace("https://","")
 			tempdash = tempdash.SubString2(0,tempdash.LastIndexOf("."))
 			Log(tempdash&"  has dash")
+			ListNames.Add(tempdash)
+			ListNames.Add(tempdash&"-bck")
+			ListNames.Add(tempdash&"-backup")
+			ListNames.Add(tempdash&"_backup")
+			ListNames.Add(tempdash&"_bck")
 			Dim components() As String
 			components = Regex.Split("-", tempdash)
 			Log(components(0))
@@ -247,6 +252,11 @@ Sub UpdateLists
 			tempdash = tempdash.Replace("https://","")
 			tempdash = tempdash.SubString2(0,tempdash.LastIndexOf("."))
 			Log(tempdash&"  has _________")
+			ListNames.Add(tempdash)
+			ListNames.Add(tempdash&"-bck")
+			ListNames.Add(tempdash&"-backup")
+			ListNames.Add(tempdash&"_backup")
+			ListNames.Add(tempdash&"_bck")
 			Dim components() As String
 			components = Regex.Split("_", tempdash)
 			Log(components(0))
@@ -353,6 +363,8 @@ End Sub
 
 
 Private Sub SelectMultiSiteBtn_Click
+	
+	fx.ShowExternalDocument("https://api.hackertarget.com/reverseiplookup/?q=example.com")
 	
 	Dim FC As FileChooser
 	FC.Initialize
