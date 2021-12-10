@@ -39,9 +39,12 @@ public Object _tag = null;
 public boolean _disableresizeevent = false;
 public boolean _wordwrap = false;
 public boolean _rtl = false;
+public b4j.example.dateutils _dateutils = null;
+public b4j.example.cssutils _cssutils = null;
 public ir.abalfazl.hero.zip.grabber.main _main = null;
 public ir.abalfazl.hero.zip.grabber.b4xcollections _b4xcollections = null;
 public ir.abalfazl.hero.zip.grabber.httputils2service _httputils2service = null;
+public ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
 public String  _base_resize(double _width,double _height) throws Exception{
  //BA.debugLineNum = 51;BA.debugLine="Private Sub Base_Resize (Width As Double, Height A";
  //BA.debugLineNum = 52;BA.debugLine="If DisableResizeEvent Then Return";

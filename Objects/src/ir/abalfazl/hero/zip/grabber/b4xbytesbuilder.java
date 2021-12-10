@@ -25,9 +25,12 @@ public class b4xbytesbuilder extends B4AClass.ImplB4AClass implements BA.SubDele
  public anywheresoftware.b4a.keywords.Common __c = null;
 public byte[] _mbuffer = null;
 public int _mlength = 0;
+public b4j.example.dateutils _dateutils = null;
+public b4j.example.cssutils _cssutils = null;
 public ir.abalfazl.hero.zip.grabber.main _main = null;
 public ir.abalfazl.hero.zip.grabber.b4xcollections _b4xcollections = null;
 public ir.abalfazl.hero.zip.grabber.httputils2service _httputils2service = null;
+public ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
 public ir.abalfazl.hero.zip.grabber.b4xbytesbuilder  _append(byte[] _data) throws Exception{
 int _oldlength = 0;
  //BA.debugLineNum = 24;BA.debugLine="Public Sub Append(Data() As Byte) As B4XBytesBuild";

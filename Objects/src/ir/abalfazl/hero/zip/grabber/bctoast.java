@@ -35,9 +35,12 @@ public int _paddingsides = 0;
 public int _paddingtopbottom = 0;
 public int _maxheight = 0;
 public int _verticalcenterpercentage = 0;
+public b4j.example.dateutils _dateutils = null;
+public b4j.example.cssutils _cssutils = null;
 public ir.abalfazl.hero.zip.grabber.main _main = null;
 public ir.abalfazl.hero.zip.grabber.b4xcollections _b4xcollections = null;
 public ir.abalfazl.hero.zip.grabber.httputils2service _httputils2service = null;
+public ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
 public String  _class_globals() throws Exception{
  //BA.debugLineNum = 1;BA.debugLine="Sub Class_Globals";
  //BA.debugLineNum = 2;BA.debugLine="Public pnl As B4XView";

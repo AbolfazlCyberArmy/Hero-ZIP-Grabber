@@ -21,8 +21,11 @@ static {
 	}
 
  public static anywheresoftware.b4a.keywords.Common __c = null;
+public static b4j.example.dateutils _dateutils = null;
+public static b4j.example.cssutils _cssutils = null;
 public static ir.abalfazl.hero.zip.grabber.main _main = null;
 public static ir.abalfazl.hero.zip.grabber.httputils2service _httputils2service = null;
+public static ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
 public static ir.abalfazl.hero.zip.grabber.b4xbitset  _createbitset(int _size) throws Exception{
 ir.abalfazl.hero.zip.grabber.b4xbitset _s = null;
  //BA.debugLineNum = 52;BA.debugLine="Public Sub CreateBitSet (Size As Int) As B4XBitSet";

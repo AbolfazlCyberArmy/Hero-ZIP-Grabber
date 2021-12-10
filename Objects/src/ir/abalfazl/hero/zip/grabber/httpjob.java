@@ -36,9 +36,12 @@ public Object _tag = null;
 public anywheresoftware.b4j.objects.JFX _fx = null;
 public String _invalidurl = "";
 public String _defaultscheme = "";
+public b4j.example.dateutils _dateutils = null;
+public b4j.example.cssutils _cssutils = null;
 public ir.abalfazl.hero.zip.grabber.main _main = null;
 public ir.abalfazl.hero.zip.grabber.b4xcollections _b4xcollections = null;
 public ir.abalfazl.hero.zip.grabber.httputils2service _httputils2service = null;
+public ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
 public static class _multipartfiledata{
 public boolean IsInitialized;
 public String Dir;

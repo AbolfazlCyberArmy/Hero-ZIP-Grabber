@@ -25,8 +25,11 @@ public static anywheresoftware.b4h.okhttp.OkHttpClientWrapper _hc = null;
 public static anywheresoftware.b4a.objects.collections.Map _taskidtojob = null;
 public static String _tempfolder = "";
 public static int _taskcounter = 0;
+public static b4j.example.dateutils _dateutils = null;
+public static b4j.example.cssutils _cssutils = null;
 public static ir.abalfazl.hero.zip.grabber.main _main = null;
 public static ir.abalfazl.hero.zip.grabber.b4xcollections _b4xcollections = null;
+public static ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
 public static String  _completejob(int _taskid,boolean _success,String _errormessage) throws Exception{
 ir.abalfazl.hero.zip.grabber.httpjob _job = null;
  //BA.debugLineNum = 142;BA.debugLine="Sub CompleteJob(TaskId As Int, success As Boolean,";

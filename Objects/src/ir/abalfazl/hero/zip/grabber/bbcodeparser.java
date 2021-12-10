@@ -31,9 +31,12 @@ public anywheresoftware.b4a.objects.B4XViewWrapper.XUI _xui = null;
 public int _urlcolor = 0;
 public anywheresoftware.b4a.objects.collections.Map _colorsmap = null;
 public anywheresoftware.b4a.keywords.StringBuilderWrapper _errorstring = null;
+public b4j.example.dateutils _dateutils = null;
+public b4j.example.cssutils _cssutils = null;
 public ir.abalfazl.hero.zip.grabber.main _main = null;
 public ir.abalfazl.hero.zip.grabber.b4xcollections _b4xcollections = null;
 public ir.abalfazl.hero.zip.grabber.httputils2service _httputils2service = null;
+public ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
 public static class _bbcodetextnode{
 public boolean IsInitialized;
 public String Text;

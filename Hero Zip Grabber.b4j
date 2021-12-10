@@ -16,10 +16,11 @@ Library2=bctoast
 Library3=jcore
 Library4=jfx
 Library5=jokhttputils2
-Library6=jxui
-Library7=jshell
+Library6=jshell
+Library7=jxui
+Library8=xui views
 NumberOfFiles=5
-NumberOfLibraries=7
+NumberOfLibraries=8
 NumberOfModules=0
 Version=9.3
 @EndOfDesignText@
@@ -44,10 +45,17 @@ Sub Process_Globals
 	Private ResultsLV As ListView
 	Private UrlEt As TextField
 	
+	Private Base As B4XView
+	Private Dialog As B4XDialog
+	
 	Dim Toast As BCToast
 	Private SelectMultiSiteBtn As Button
-	Private ScanedStatusLbl As Label
+	Private ScanedStatusAC As AnimatedCounter
 	Private LoadingIV As ImageView
+	Dim InputTemplate As B4XInputTemplate
+	
+	Private ProgressBar1 As AnotherProgressBar
+	Private TimeStatudlbl As Label
 End Sub
 
 Sub AppStart (Form1 As Form, Args() As String)
@@ -55,6 +63,12 @@ Sub AppStart (Form1 As Form, Args() As String)
 	MainForm = Form1
 	MainForm.RootPane.LoadLayout("HomeLayout")
 	MainForm.Show
+	
+	
+	Base = MainForm.RootPane
+	Dialog.Initialize (Base)
+	Dialog.Title = "Enter Time between each url check"
+	Dialog.TitleBarColor=0x58CDFF46
 	
 	If File.Exists(File.DirApp, "url.txt") Then
 		UrlEt.text = File.ReadString(File.DirApp, "url.txt")
@@ -76,9 +90,13 @@ Sub AppStart (Form1 As Form, Args() As String)
 	TaskIds.Initialize
 	
 	Toast.Initialize(MainForm.RootPane)
+	Toast.pnl.Color=0x85CDFF46
 	
 	ResultsLV.Alpha = 0.8
 	
+	If Not(File.Exists(File.DirApp,"sleeptime")) Then
+		File.WriteString(File.DirApp,"sleeptime",2000)
+	End If
 	
 End Sub
 
@@ -95,7 +113,8 @@ Private Sub UrlEt_Action
 			File.WriteString(File.DirApp, "url.txt",UrlEt.Text)
 			UpdateLists
 		Else
-			xui.MsgboxAsync("Just Text file", "No Valid")
+			Toast.Show("No Valid "&CRLF&" Just Text file")
+'			xui.MsgboxAsync("Just Text file", "No Valid")
 		End If
 	Else
 		If UrlEt.Text.StartsWith("http") And UrlEt.Text.Contains(".") Then
@@ -106,7 +125,8 @@ Private Sub UrlEt_Action
 			ListSites.Add(UrlEt.Text)
 			UpdateLists
 		Else
-			xui.MsgboxAsync("Enter Valid URL with http or https", "No Valid")
+'			xui.MsgboxAsync("Enter Valid URL with http or https", "No Valid")
+			Toast.Show("No Valid "&CRLF&" Enter Valid URL with http or https")
 			UrlEt.RequestFocus
 			UrlEt.SelectAll
 		End If
@@ -128,9 +148,23 @@ Private Sub MenuBar1_Action
 	Log(mi.Text)
 	Select mi.Text
 		Case "Show_Errors"
+		Case "_Close"
+			ExitApplication
+		Case "Sleep Time"
+			InputTemplate.initialize
+			InputTemplate.lblTitle.Text = "Enter time per milliSecond(MS)"
+			InputTemplate.Text = 1110
+			InputTemplate.RegexPattern = "\d\d\d\d" '<---optional. Remove if not needed
+			Wait For (Dialog.ShowTemplate(InputTemplate, "Save", "", "CANCEL")) Complete (Result As Int)
+			If Result = xui.DialogResponse_Positive Then
+				Log(InputTemplate.Text)
+				Toast.Show(InputTemplate.Text)
+				File.WriteString(File.DirApp,"sleeptime",InputTemplate.Text)
+			End If
 		Case "Proxy List"
 			xui.MsgboxAsync("You have to pay to use these features", "Pay")
 		Case "Our Team","Learn"
+			fx.ShowExternalDocument("http://iranhack.com")
 			fx.ShowExternalDocument("http://irhpentest.ir")
 		Case "Play / Pause"
 			StartSearchBtn_Click
@@ -185,20 +219,23 @@ End Sub
 
 Private Sub StartSearchBtn_Click
 	If Not(ListNames.IsInitialized) Then
-		xui.MsgboxAsync("First Enter URl and Press *Enter*", "Enter!")
+		Toast.Show("First Enter URl and Press *Enter*")
 		UrlEt.RequestFocus
 	Else
 		If StartSearchBtn.Tag == "started" Then
 			StartSearchBtn.Text="Start Mission"
 			StartSearchBtn.Tag="stopped"
-			ScanedStatusLbl.Text=""
+			ScanedStatusAC.Value=0
 			LoadingIV.Visible=False
+			StartSearchBtn.SetAlphaAnimated(1000,1)
+			TimeStatudlbl.Text=""
 '			ResultsLV.Visible=False
 		Else
 			StartSearchBtn.Text="Stop Mission"
 			StartSearchBtn.Tag="started"
 			ResultsLV.Visible=True
 			LoadingIV.Visible=True
+			StartSearchBtn.SetAlphaAnimated(1000,0.5)
 			DownloadPlz
 		End If
 	End If
@@ -282,9 +319,18 @@ End Sub
 Sub DownloadPlz
    
 	
-	Toast.Show("Start Grabbing")
+	Dim mysleeptime As Int
+	If File.Exists(File.DirApp,"sleeptime") Then
+		mysleeptime = File.ReadString(File.DirApp,"sleeptime")
+	Else
+		mysleeptime = 1110
+	End If
+	
+	TimeStatudlbl.Text = " From "&PrimaryWordsLV.Items.Size&" item in "&(Round(mysleeptime/1000*PrimaryWordsLV.Items.Size/60))&" Minute"
+	Toast.Show("Start Grabbing "&PrimaryWordsLV.Items.Size&" item in "&(Round(mysleeptime/1000*PrimaryWordsLV.Items.Size/60))&" Minute")
 	
 	For Each uri As String In PrimaryWordsLV.Items
+		
 		Dim hc As OkHttpClient
 		hc.Initialize("hc")
 		Dim req As OkHttpRequest
@@ -294,9 +340,10 @@ Sub DownloadPlz
 		TaskIds.Put(TaskIDNum,uri)
 		TaskIDNum = TaskIDNum+1
 		
-		ScanedStatusLbl.Text = TaskIDNum&" Item Scanned"
+		ScanedStatusAC.Value=TaskIDNum
+'		ScanedStatusLbl.Text = TaskIDNum&" Item Scanned"
 		
-		Sleep(1110)
+		Sleep(mysleeptime)
 		
 		If StartSearchBtn.Tag=="stopped" Then Exit
 		
@@ -364,7 +411,7 @@ End Sub
 
 Private Sub SelectMultiSiteBtn_Click
 	
-	fx.ShowExternalDocument("https://api.hackertarget.com/reverseiplookup/?q=example.com")
+'	fx.ShowExternalDocument("https://api.hackertarget.com/reverseiplookup/?q=example.com")
 	
 	Dim FC As FileChooser
 	FC.Initialize
