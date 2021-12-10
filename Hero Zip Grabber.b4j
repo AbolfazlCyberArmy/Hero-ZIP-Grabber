@@ -1,0 +1,370 @@
+﻿AppType=JavaFX
+Build1=Default,ir.abalfazl.hero.zip.grabber
+File1=Hero.jpg
+File2=HomeLayout.bjl
+File3=ICO1.png
+File4=load.gif
+File5=names.txt
+FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+Group=Default Group
+Library1=bctextengine
+Library2=bctoast
+Library3=jcore
+Library4=jfx
+Library5=jokhttputils2
+Library6=jxui
+Library7=jshell
+NumberOfFiles=5
+NumberOfLibraries=7
+NumberOfModules=0
+Version=9.3
+@EndOfDesignText@
+#Region Project Attributes 
+	#MainFormWidth: 640
+	#MainFormHeight: 640 
+	#PackagerProperty: IncludedModules = jdk.crypto.ec
+#End Region
+
+Sub Process_Globals
+	Public extentions() As String = Array As String(".zip", ".gzip", ".tar.gz", ".tar")
+	Dim ListNames,ListSites As List
+	Dim TaskIds As Map
+	Dim TaskIDNum = 0 As Int
+	Private fx As JFX
+	Private MainForm As Form
+	Private xui As XUI 
+	Private MenuBar1 As MenuBar
+	Private SWET As TextField
+	Private StartSearchBtn As Button
+	Private PrimaryWordsLV,SWLV As ListView
+	Private ResultsLV As ListView
+	Private UrlEt As TextField
+	
+	Dim Toast As BCToast
+	Private SelectMultiSiteBtn As Button
+	Private ScanedStatusLbl As Label
+	Private LoadingIV As ImageView
+End Sub
+
+Sub AppStart (Form1 As Form, Args() As String)
+	
+	MainForm = Form1
+	MainForm.RootPane.LoadLayout("HomeLayout")
+	MainForm.Show
+	
+	If File.Exists(File.DirApp, "url.txt") Then
+		UrlEt.text = File.ReadString(File.DirApp, "url.txt")
+		If UrlEt.text.EndsWith(".txt") Then
+			UrlEt.Tag="list"
+		Else
+			UrlEt.Tag="site"
+		End If
+		
+	Else
+		UrlEt.Tag="site"
+	End If
+	
+	If File.Exists(File.DirApp,"ls") Then
+		SWLV.Items.AddAll(File.ReadList(File.DirApp,"ls"))
+	End If
+	
+	ListSites.Initialize
+	TaskIds.Initialize
+	
+	Toast.Initialize(MainForm.RootPane)
+	
+	ResultsLV.Alpha = 0.8
+	
+	
+End Sub
+
+Private Sub UrlEt_Action
+	ListSites.Clear
+	If UrlEt.Tag="list" Then
+		If UrlEt.Text.EndsWith(".txt") Then
+			Dim List1 As List
+			List1 = File.ReadList("",UrlEt.Text)
+			ListSites = List1
+			For i = 0 To List1.Size - 1
+				Log(List1.Get(i))
+			Next
+			File.WriteString(File.DirApp, "url.txt",UrlEt.Text)
+			UpdateLists
+		Else
+			xui.MsgboxAsync("Just Text file", "No Valid")
+		End If
+	Else
+		If UrlEt.Text.StartsWith("http") And UrlEt.Text.Contains(".") Then
+			If UrlEt.Text.EndsWith("/") Then
+				UrlEt.Text=UrlEt.Text.SubString2(0,UrlEt.Text.Length-1)
+			End If
+			File.WriteString(File.DirApp, "url.txt",UrlEt.Text)
+			ListSites.Add(UrlEt.Text)
+			UpdateLists
+		Else
+			xui.MsgboxAsync("Enter Valid URL with http or https", "No Valid")
+			UrlEt.RequestFocus
+			UrlEt.SelectAll
+		End If
+	End If
+End Sub
+
+Private Sub UrlEt_TextChanged (Old As String, New As String)
+	If UrlEt.Text.StartsWith("http") And UrlEt.Text.Contains(".") Then
+		UrlEt.Tag="site"
+	End If
+End Sub
+
+Private Sub UrlEt_FocusChanged (HasFocus As Boolean)
+	If Not(HasFocus) Then UrlEt_Action
+End Sub
+
+Private Sub MenuBar1_Action
+	Dim mi As MenuItem = Sender
+	Log(mi.Text)
+	Select mi.Text
+		Case "Show_Errors"
+		Case "Proxy List"
+			xui.MsgboxAsync("You have to pay to use these features", "Pay")
+		Case "Our Team","Learn"
+			fx.ShowExternalDocument("http://irhpentest.ir")
+		Case "Play / Pause"
+			StartSearchBtn_Click
+	End Select
+End Sub
+
+Private Sub MenuBar1_SelectedChange (Selected As Boolean)
+	If Selected Then
+		MenuBar1.Tag="Show_Errors"
+	Else
+		MenuBar1.Tag="Hide_Errors"
+	End If
+End Sub
+
+Private Sub SWAddBtn_Click
+	
+	Dim LS As List
+	LS.Initialize
+	If File.Exists(File.DirApp,"ls") Then
+		LS = File.ReadList(File.DirApp,"ls")
+	End If
+	LS.Add(SWET.Text)
+	
+	File.WriteList(File.DirApp,"ls",LS)
+	
+	SWLV.Items.Add(SWET.Text)
+	SWET.Text=""
+	
+	UpdateLists
+	
+End Sub
+
+
+Private Sub SWLV_SelectedIndexChanged(Index As Int)
+	Dim sf As Object = xui.Msgbox2Async("Are You Sure To Delete Item: "&(Index+1), "Delete!", "Yes", "Cancel", "No", Null)
+	Wait For (sf) Msgbox_Result (Result As Int)
+	If Result = xui.DialogResponse_Positive Then
+		Log("Deleted!!! "&Index)
+		Dim ls As List = File.ReadList(File.DirApp,"ls")
+		ls.RemoveAt(Index)
+		File.WriteList(File.DirApp,"ls",ls)
+	End If
+	
+	If File.Exists(File.DirApp,"ls") Then
+		SWLV.Items.Clear
+		SWLV.Items.AddAll(File.ReadList(File.DirApp,"ls"))
+	End If
+	
+	UpdateLists
+	
+End Sub
+
+Private Sub StartSearchBtn_Click
+	If Not(ListNames.IsInitialized) Then
+		xui.MsgboxAsync("First Enter URl and Press *Enter*", "Enter!")
+		UrlEt.RequestFocus
+	Else
+		If StartSearchBtn.Tag == "started" Then
+			StartSearchBtn.Text="Start Mission"
+			StartSearchBtn.Tag="stopped"
+			ScanedStatusLbl.Text=""
+			LoadingIV.Visible=False
+'			ResultsLV.Visible=False
+		Else
+			StartSearchBtn.Text="Stop Mission"
+			StartSearchBtn.Tag="started"
+			ResultsLV.Visible=True
+			LoadingIV.Visible=True
+			DownloadPlz
+		End If
+	End If
+End Sub
+
+
+
+
+
+
+
+Sub UpdateLists
+	PrimaryWordsLV.Items.Clear
+	
+	ListNames = File.ReadList(File.DirAssets, "names.txt")
+			
+	For Each uri As String In SWLV.Items
+		ListNames.Add(uri)
+	Next
+	
+	LogColor("adding "&ListSites.Size&" item",0xFF0EA313)
+	
+	For Each url As String In ListSites
+		
+		If Not(url.StartsWith("http")) Then
+			url="http://"&url
+		End If
+		
+		If url.Contains("-") Then
+			Dim tempdash As String = url
+			tempdash = tempdash.Replace("http://","")
+			tempdash = tempdash.Replace("https://","")
+			tempdash = tempdash.SubString2(0,tempdash.LastIndexOf("."))
+			Log(tempdash&"  has dash")
+			Dim components() As String
+			components = Regex.Split("-", tempdash)
+			Log(components(0))
+			ListNames.Add(components(0))
+			Log(components(1))
+			ListNames.Add(components(1))
+		End If
+			
+		If url.Contains("_") Then
+			Dim tempdash As String = url
+			tempdash = tempdash.Replace("http://","")
+			tempdash = tempdash.Replace("https://","")
+			tempdash = tempdash.SubString2(0,tempdash.LastIndexOf("."))
+			Log(tempdash&"  has _________")
+			Dim components() As String
+			components = Regex.Split("_", tempdash)
+			Log(components(0))
+			ListNames.Add(components(0))
+			Log(components(1))
+			ListNames.Add(components(1))
+		End If
+			
+		For Each ex As String In extentions
+			For i = 0 To ListNames.Size - 1
+				PrimaryWordsLV.Items.Add(url&"/"&ListNames.Get(i)&ex)
+			Next
+		Next
+	
+	Next
+	
+	
+End Sub
+
+
+
+
+Sub DownloadPlz
+   
+	
+	Toast.Show("Start Grabbing")
+	
+	For Each uri As String In PrimaryWordsLV.Items
+		Dim hc As OkHttpClient
+		hc.Initialize("hc")
+		Dim req As OkHttpRequest
+		req.InitializeHead(uri)
+		hc.Execute(req, TaskIDNum)
+		
+		TaskIds.Put(TaskIDNum,uri)
+		TaskIDNum = TaskIDNum+1
+		
+		ScanedStatusLbl.Text = TaskIDNum&" Item Scanned"
+		
+		Sleep(1110)
+		
+		If StartSearchBtn.Tag=="stopped" Then Exit
+		
+	Next
+	
+	xui.MsgboxAsync("Grabb Ended...", "ENDED")
+	StartSearchBtn.Text="Start Mission"
+	StartSearchBtn.Tag="stopped"
+	
+End Sub
+
+
+
+
+Sub hc_ResponseSuccess (Response As OkHttpResponse, TaskID As Int)
+	If Response.ContentType=="application/zip" Then
+		
+		ResultsLV.Items.Add(Response.StatusCode&" .:|:. type: " &Response.ContentType&" .:|:. "&TaskIds.Get(TaskID))
+		
+'		Dim j As HttpJob
+'		j.Initialize("", Me)
+'		j.Download(TaskIds.Get(TaskID))
+'		Wait For (j) JobDone(j As HttpJob)
+'		If j.Success Then
+'			
+'			LogColor("Size : "&j.GetString.Length,0xFF0EA313)
+'			
+'			If j.GetString.Length>202 Then
+'				Dim sf As Object = xui.Msgbox2Async("Zip Finded...", "Horrrraaaaa", "Open in Browser", "", "" , Null)
+'				Wait For (sf) Msgbox_Result (Result As Int)
+'				If Result = xui.DialogResponse_Positive Then
+'					fx.ShowExternalDocument(TaskIds.Get(TaskID))
+'					Log(TaskIds.Get(TaskID))
+'				End If
+'			Else
+'				LogColor("Size Lowed",0xFF0EA313)
+'			End If
+'		Else
+'	'		ResultsLV.Items.Add(" Error 404 .:|:. " &url)
+'		End If
+'		j.Release
+
+	Else
+		If MenuBar1.Tag="Show_Errors" Then
+			ResultsLV.Items.Add(Response.StatusCode&" .:|:. type: " &Response.ContentType&" .:|:. length:"&Response.ContentLength &" .:|:. "&TaskIds.Get(TaskID))
+			Log("Fake OK 200 on : "&TaskIds.Get(TaskID))
+		End If
+	End If
+	Response.Release
+End Sub
+
+Sub hc_ResponseError (Response As OkHttpResponse, Reason As String, StatusCode As Int, TaskID As Int)
+	Log("error: " & StatusCode&" .:|:. "&TaskIds.Get(TaskID))
+	If MenuBar1.Tag="Show_Errors" Then
+		ResultsLV.Items.Add("error: " &StatusCode&" .:|:. "&TaskIds.Get(TaskID))
+	End If
+	Response.Release
+End Sub
+
+Private Sub ResultsLV_SelectedIndexChanged(Index As Int)
+	Toast.Show("Link Copied to ClipBoard ...")
+	fx.Clipboard.SetString(TaskIds.Get(Index))
+End Sub
+
+
+Private Sub SelectMultiSiteBtn_Click
+	
+	Dim FC As FileChooser
+	FC.Initialize
+	FC.Title = "Select the text file to check multi sites"
+	FC.SetExtensionFilter("TXT", Array As String("*.txt"))
+	Dim selected As String = FC.ShowOpen(MainForm)
+	Log(selected)
+	
+	UrlEt.Tag="list"
+	UrlEt.Text = selected
+	
+	UrlEt_Action
+	
+End Sub
+
