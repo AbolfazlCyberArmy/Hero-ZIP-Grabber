@@ -34,6 +34,7 @@ public anywheresoftware.b4a.keywords.StringBuilderWrapper _errorstring = null;
 public b4j.example.dateutils _dateutils = null;
 public b4j.example.cssutils _cssutils = null;
 public ir.abalfazl.hero.zip.grabber.main _main = null;
+public ir.abalfazl.hero.zip.grabber.aboutact _aboutact = null;
 public ir.abalfazl.hero.zip.grabber.b4xcollections _b4xcollections = null;
 public ir.abalfazl.hero.zip.grabber.httputils2service _httputils2service = null;
 public ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
@@ -951,7 +952,7 @@ _name = BA.ObjectToString(_tag.Extra /*anywheresoftware.b4a.objects.collections.
  //BA.debugLineNum = 251;BA.debugLine="If mTextEngine.CustomFonts.ContainsKey(name) =";
 if (_mtextengine._customfonts /*anywheresoftware.b4a.objects.collections.Map*/ .ContainsKey((Object)(_name))==__c.False) { 
  //BA.debugLineNum = 252;BA.debugLine="Log(\"Font missing from TextEngine.CustomFonts";
-__c.LogImpl("91769533","Font missing from TextEngine.CustomFonts: "+_name,0);
+__c.LogImpl("91900605","Font missing from TextEngine.CustomFonts: "+_name,0);
  }else {
  //BA.debugLineNum = 254;BA.debugLine="Dim NewFont As B4XFont =  mTextEngine.CustomF";
 _newfont = new anywheresoftware.b4a.objects.B4XViewWrapper.B4XFont();

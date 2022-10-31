@@ -28,6 +28,7 @@ public static int _taskcounter = 0;
 public static b4j.example.dateutils _dateutils = null;
 public static b4j.example.cssutils _cssutils = null;
 public static ir.abalfazl.hero.zip.grabber.main _main = null;
+public static ir.abalfazl.hero.zip.grabber.aboutact _aboutact = null;
 public static ir.abalfazl.hero.zip.grabber.b4xcollections _b4xcollections = null;
 public static ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
 public static String  _completejob(int _taskid,boolean _success,String _errormessage) throws Exception{
@@ -38,7 +39,7 @@ _job = (ir.abalfazl.hero.zip.grabber.httpjob)(_taskidtojob.Get((Object)(_taskid)
  //BA.debugLineNum = 147;BA.debugLine="If job = Null Then";
 if (_job== null) { 
  //BA.debugLineNum = 148;BA.debugLine="Log(\"HttpUtils2Service: job completed multiple t";
-anywheresoftware.b4a.keywords.Common.LogImpl("912255238","HttpUtils2Service: job completed multiple times - "+BA.NumberToString(_taskid),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("912386310","HttpUtils2Service: job completed multiple times - "+BA.NumberToString(_taskid),0);
  //BA.debugLineNum = 149;BA.debugLine="Return";
 if (true) return "";
  };
@@ -57,7 +58,7 @@ public static String  _hc_responseerror(anywheresoftware.b4h.okhttp.OkHttpClient
 ir.abalfazl.hero.zip.grabber.httpjob _job = null;
  //BA.debugLineNum = 109;BA.debugLine="Sub hc_ResponseError (Response As OkHttpResponse,";
  //BA.debugLineNum = 110;BA.debugLine="Log($\"ResponseError. Reason: ${Reason}, Response:";
-anywheresoftware.b4a.keywords.Common.LogImpl("912189697",("ResponseError. Reason: "+anywheresoftware.b4a.keywords.Common.SmartStringFormatter("",(Object)(_reason))+", Response: "+anywheresoftware.b4a.keywords.Common.SmartStringFormatter("",(Object)(_response.getErrorResponse()))+""),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("912320769",("ResponseError. Reason: "+anywheresoftware.b4a.keywords.Common.SmartStringFormatter("",(Object)(_reason))+", Response: "+anywheresoftware.b4a.keywords.Common.SmartStringFormatter("",(Object)(_response.getErrorResponse()))+""),0);
  //BA.debugLineNum = 111;BA.debugLine="Response.Release";
 _response.Release();
  //BA.debugLineNum = 112;BA.debugLine="Dim job As HttpJob = TaskIdToJob.Get(TaskId)";
@@ -65,7 +66,7 @@ _job = (ir.abalfazl.hero.zip.grabber.httpjob)(_taskidtojob.Get((Object)(_taskid)
  //BA.debugLineNum = 113;BA.debugLine="If job = Null Then";
 if (_job== null) { 
  //BA.debugLineNum = 114;BA.debugLine="Log(\"HttpUtils2Service (hc_ResponseError): job c";
-anywheresoftware.b4a.keywords.Common.LogImpl("912189701","HttpUtils2Service (hc_ResponseError): job completed multiple times - "+BA.NumberToString(_taskid),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("912320773","HttpUtils2Service (hc_ResponseError): job completed multiple times - "+BA.NumberToString(_taskid),0);
  //BA.debugLineNum = 115;BA.debugLine="Return";
 if (true) return "";
  };
@@ -91,7 +92,7 @@ _job = (ir.abalfazl.hero.zip.grabber.httpjob)(_taskidtojob.Get((Object)(_taskid)
  //BA.debugLineNum = 88;BA.debugLine="If job = Null Then";
 if (_job== null) { 
  //BA.debugLineNum = 89;BA.debugLine="Log(\"HttpUtils2Service (hc_ResponseSuccess): job";
-anywheresoftware.b4a.keywords.Common.LogImpl("912058627","HttpUtils2Service (hc_ResponseSuccess): job completed multiple times - "+BA.NumberToString(_taskid),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("912189699","HttpUtils2Service (hc_ResponseSuccess): job completed multiple times - "+BA.NumberToString(_taskid),0);
  //BA.debugLineNum = 90;BA.debugLine="Return";
 if (true) return "";
  };

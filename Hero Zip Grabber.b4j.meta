@@ -1,6 +1,9 @@
 ﻿ModuleBookmarks0=
+ModuleBookmarks1=
 ModuleBreakpoints0=
+ModuleBreakpoints1=
 ModuleClosedNodes0=
-NavigationStack=Main,SWAddBtn_Click,139,0,Main,UrlEt_FocusChanged,107,0,Main,UpdateLists,225,0,Main,DownloadPlz,321,6,Main,StartSearchBtn_Click,191,6,Visual Designer,HomeLayout.bjl,-100,6,Main,AppStart,56,6,Main,SelectMultiSiteBtn_Click,384,0,Main,Process_Globals,17,4,Main,MenuBar1_Action,125,6
+ModuleClosedNodes1=
+NavigationStack=Main,UpdateLists,287,0,Main,AppStart,39,6,Main,Process_Globals,16,6,AboutAct,IRHBtn_Click,21,0,AboutAct,Process_Globals,6,0,Visual Designer,HomeLayout.bjl,-100,6,AboutAct,PenTestBtn_Click,18,0,Visual Designer,AboutLayout.bjl,-100,6,AboutAct,Show,13,5,Main,MenuBar1_Action,141,2,Main,NotifyAdmin,392,0
 SelectedBuild=0
-VisibleModules=
+VisibleModules=1

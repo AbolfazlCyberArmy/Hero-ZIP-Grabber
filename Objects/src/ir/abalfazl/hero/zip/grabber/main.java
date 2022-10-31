@@ -44,6 +44,7 @@ public static anywheresoftware.b4a.keywords.Common __c = null;
 public static String[] _extentions = null;
 public static anywheresoftware.b4a.objects.collections.List _listnames = null;
 public static anywheresoftware.b4a.objects.collections.List _listsites = null;
+public static anywheresoftware.b4a.objects.collections.List _resultlvitems = null;
 public static anywheresoftware.b4a.objects.collections.Map _taskids = null;
 public static int _taskidnum = 0;
 public static anywheresoftware.b4j.objects.JFX _fx = null;
@@ -67,6 +68,7 @@ public static ir.abalfazl.hero.zip.grabber.anotherprogressbar _progressbar1 = nu
 public static anywheresoftware.b4j.objects.LabelWrapper _timestatudlbl = null;
 public static b4j.example.dateutils _dateutils = null;
 public static b4j.example.cssutils _cssutils = null;
+public static ir.abalfazl.hero.zip.grabber.aboutact _aboutact = null;
 public static ir.abalfazl.hero.zip.grabber.b4xcollections _b4xcollections = null;
 public static ir.abalfazl.hero.zip.grabber.httputils2service _httputils2service = null;
 public static ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
@@ -107,22 +109,24 @@ if (anywheresoftware.b4a.keywords.Common.File.Exists(anywheresoftware.b4a.keywor
  //BA.debugLineNum = 60;BA.debugLine="SWLV.Items.AddAll(File.ReadList(File.DirApp,\"ls\"";
 _swlv.getItems().AddAll(anywheresoftware.b4a.keywords.Common.File.ReadList(anywheresoftware.b4a.keywords.Common.File.getDirApp(),"ls"));
  };
- //BA.debugLineNum = 63;BA.debugLine="ListSites.Initialize";
+ //BA.debugLineNum = 63;BA.debugLine="ResultLVItems.Initialize";
+_resultlvitems.Initialize();
+ //BA.debugLineNum = 64;BA.debugLine="ListSites.Initialize";
 _listsites.Initialize();
- //BA.debugLineNum = 64;BA.debugLine="TaskIds.Initialize";
+ //BA.debugLineNum = 65;BA.debugLine="TaskIds.Initialize";
 _taskids.Initialize();
- //BA.debugLineNum = 66;BA.debugLine="Toast.Initialize(MainForm.RootPane)";
+ //BA.debugLineNum = 67;BA.debugLine="Toast.Initialize(MainForm.RootPane)";
 _toast._initialize /*String*/ (ba,(anywheresoftware.b4a.objects.B4XViewWrapper) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4a.objects.B4XViewWrapper(), (java.lang.Object)(_mainform.getRootPane().getObject())));
- //BA.debugLineNum = 67;BA.debugLine="Toast.pnl.Color=0x85CDFF46";
+ //BA.debugLineNum = 68;BA.debugLine="Toast.pnl.Color=0x85CDFF46";
 _toast._pnl /*anywheresoftware.b4a.objects.B4XViewWrapper*/ .setColor(((int)0x85cdff46));
- //BA.debugLineNum = 69;BA.debugLine="ResultsLV.Alpha = 0.8";
+ //BA.debugLineNum = 70;BA.debugLine="ResultsLV.Alpha = 0.8";
 _resultslv.setAlpha(0.8);
- //BA.debugLineNum = 71;BA.debugLine="If Not(File.Exists(File.DirApp,\"sleeptime\")) Then";
+ //BA.debugLineNum = 72;BA.debugLine="If Not(File.Exists(File.DirApp,\"sleeptime\")) Then";
 if (anywheresoftware.b4a.keywords.Common.Not(anywheresoftware.b4a.keywords.Common.File.Exists(anywheresoftware.b4a.keywords.Common.File.getDirApp(),"sleeptime"))) { 
- //BA.debugLineNum = 72;BA.debugLine="File.WriteString(File.DirApp,\"sleeptime\",2000)";
+ //BA.debugLineNum = 73;BA.debugLine="File.WriteString(File.DirApp,\"sleeptime\",2000)";
 anywheresoftware.b4a.keywords.Common.File.WriteString(anywheresoftware.b4a.keywords.Common.File.getDirApp(),"sleeptime",BA.NumberToString(2000));
  };
- //BA.debugLineNum = 75;BA.debugLine="End Sub";
+ //BA.debugLineNum = 76;BA.debugLine="End Sub";
 return "";
 }
 public static void  _downloadplz() throws Exception{
@@ -138,6 +142,7 @@ int _mysleeptime = 0;
 String _uri = "";
 anywheresoftware.b4h.okhttp.OkHttpClientWrapper _hc = null;
 anywheresoftware.b4h.okhttp.OkHttpClientWrapper.OkHttpRequest _req = null;
+anywheresoftware.b4a.objects.collections.List _templ = null;
 anywheresoftware.b4a.BA.IterableList group9;
 int index9;
 int groupLen9;
@@ -198,10 +203,10 @@ this.state = 16;
 group9 = parent._primarywordslv.getItems();
 index9 = 0;
 groupLen9 = group9.getSize();
-this.state = 17;
+this.state = 23;
 if (true) break;
 
-case 17:
+case 23:
 //C
 this.state = 16;
 if (index9 < groupLen9) {
@@ -209,9 +214,9 @@ this.state = 9;
 _uri = BA.ObjectToString(group9.Get(index9));}
 if (true) break;
 
-case 18:
+case 24:
 //C
-this.state = 17;
+this.state = 23;
 index9++;
 if (true) break;
 
@@ -236,9 +241,9 @@ parent._taskidnum = (int) (parent._taskidnum+1);
 parent._scanedstatusac._setvalue /*int*/ (parent._taskidnum);
  //BA.debugLineNum = 320;BA.debugLine="Sleep(mysleeptime)";
 anywheresoftware.b4a.keywords.Common.Sleep(ba,this,_mysleeptime);
-this.state = 19;
+this.state = 25;
 return;
-case 19:
+case 25:
 //C
 this.state = 10;
 ;
@@ -261,22 +266,60 @@ if (true) break;
 
 case 15:
 //C
-this.state = 18;
+this.state = 24;
 ;
  if (true) break;
 if (true) break;
 
 case 16:
 //C
+this.state = 17;
+;
+ //BA.debugLineNum = 327;BA.debugLine="Dim templ As List";
+_templ = new anywheresoftware.b4a.objects.collections.List();
+ //BA.debugLineNum = 328;BA.debugLine="templ.Initialize";
+_templ.Initialize();
+ //BA.debugLineNum = 329;BA.debugLine="If Not(File.Exists(File.DirData(\"HeroZipGrabber\")";
+if (true) break;
+
+case 17:
+//if
+this.state = 22;
+if (anywheresoftware.b4a.keywords.Common.Not(anywheresoftware.b4a.keywords.Common.File.Exists(anywheresoftware.b4a.keywords.Common.File.DirData("HeroZipGrabber"),"Results"))) { 
+this.state = 19;
+}else {
+this.state = 21;
+}if (true) break;
+
+case 19:
+//C
+this.state = 22;
+ //BA.debugLineNum = 330;BA.debugLine="File.WriteList(File.DirData(\"HeroZipGrabber\"),\"R";
+anywheresoftware.b4a.keywords.Common.File.WriteList(anywheresoftware.b4a.keywords.Common.File.DirData("HeroZipGrabber"),"Results",_templ);
+ if (true) break;
+
+case 21:
+//C
+this.state = 22;
+ //BA.debugLineNum = 332;BA.debugLine="templ = File.ReadList(File.DirData(\"HeroZipGrabb";
+_templ = anywheresoftware.b4a.keywords.Common.File.ReadList(anywheresoftware.b4a.keywords.Common.File.DirData("HeroZipGrabber"),"Results");
+ if (true) break;
+
+case 22:
+//C
 this.state = -1;
 ;
- //BA.debugLineNum = 326;BA.debugLine="xui.MsgboxAsync(\"Grabb Ended...\", \"ENDED\")";
+ //BA.debugLineNum = 334;BA.debugLine="templ.AddAll(ResultLVItems)";
+_templ.AddAll(parent._resultlvitems);
+ //BA.debugLineNum = 335;BA.debugLine="File.WriteList(File.DirData(\"HeroZipGrabber\"),\"Re";
+anywheresoftware.b4a.keywords.Common.File.WriteList(anywheresoftware.b4a.keywords.Common.File.DirData("HeroZipGrabber"),"Results",_templ);
+ //BA.debugLineNum = 337;BA.debugLine="xui.MsgboxAsync(\"Grabb Ended...\", \"ENDED\")";
 parent._xui.MsgboxAsync(ba,"Grabb Ended...","ENDED");
- //BA.debugLineNum = 327;BA.debugLine="StartSearchBtn.Text=\"Start Mission\"";
+ //BA.debugLineNum = 338;BA.debugLine="StartSearchBtn.Text=\"Start Mission\"";
 parent._startsearchbtn.setText("Start Mission");
- //BA.debugLineNum = 328;BA.debugLine="StartSearchBtn.Tag=\"stopped\"";
+ //BA.debugLineNum = 339;BA.debugLine="StartSearchBtn.Tag=\"stopped\"";
 parent._startsearchbtn.setTag((Object)("stopped"));
- //BA.debugLineNum = 330;BA.debugLine="End Sub";
+ //BA.debugLineNum = 341;BA.debugLine="End Sub";
 if (true) break;
 
             }
@@ -284,37 +327,41 @@ if (true) break;
     }
 }
 public static String  _hc_responseerror(anywheresoftware.b4h.okhttp.OkHttpClientWrapper.OkHttpResponse _response,String _reason,int _statuscode,int _taskid) throws Exception{
- //BA.debugLineNum = 372;BA.debugLine="Sub hc_ResponseError (Response As OkHttpResponse,";
- //BA.debugLineNum = 373;BA.debugLine="Log(\"error: \" & StatusCode&\" .:|:. \"&TaskIds.Get(";
-anywheresoftware.b4a.keywords.Common.LogImpl("3851969","error: "+BA.NumberToString(_statuscode)+" .:|:. "+BA.ObjectToString(_taskids.Get((Object)(_taskid))),0);
- //BA.debugLineNum = 374;BA.debugLine="If MenuBar1.Tag=\"Show_Errors\" Then";
+ //BA.debugLineNum = 360;BA.debugLine="Sub hc_ResponseError (Response As OkHttpResponse,";
+ //BA.debugLineNum = 361;BA.debugLine="Log(\"error: \" & StatusCode&\" .:|:. \"&TaskIds.Get(";
+anywheresoftware.b4a.keywords.Common.LogImpl("0851969","error: "+BA.NumberToString(_statuscode)+" .:|:. "+BA.ObjectToString(_taskids.Get((Object)(_taskid))),0);
+ //BA.debugLineNum = 362;BA.debugLine="If MenuBar1.Tag=\"Show_Errors\" Then";
 if ((_menubar1.getTag()).equals((Object)("Show_Errors"))) { 
- //BA.debugLineNum = 375;BA.debugLine="ResultsLV.Items.Add(\"error: \" &StatusCode&\" .:|:";
+ //BA.debugLineNum = 363;BA.debugLine="ResultsLV.Items.Add(\"error: \" &StatusCode&\" .:|:";
 _resultslv.getItems().Add((Object)("error: "+BA.NumberToString(_statuscode)+" .:|:. "+BA.ObjectToString(_taskids.Get((Object)(_taskid)))));
  };
- //BA.debugLineNum = 377;BA.debugLine="Response.Release";
+ //BA.debugLineNum = 365;BA.debugLine="Response.Release";
 _response.Release();
- //BA.debugLineNum = 378;BA.debugLine="End Sub";
+ //BA.debugLineNum = 366;BA.debugLine="End Sub";
 return "";
 }
 public static String  _hc_responsesuccess(anywheresoftware.b4h.okhttp.OkHttpClientWrapper.OkHttpResponse _response,int _taskid) throws Exception{
- //BA.debugLineNum = 335;BA.debugLine="Sub hc_ResponseSuccess (Response As OkHttpResponse";
- //BA.debugLineNum = 336;BA.debugLine="If Response.ContentType==\"application/zip\" Then";
+ //BA.debugLineNum = 346;BA.debugLine="Sub hc_ResponseSuccess (Response As OkHttpResponse";
+ //BA.debugLineNum = 347;BA.debugLine="If Response.ContentType==\"application/zip\" Then";
 if ((_response.getContentType()).equals("application/zip")) { 
- //BA.debugLineNum = 338;BA.debugLine="ResultsLV.Items.Add(Response.StatusCode&\" .:|:.";
+ //BA.debugLineNum = 348;BA.debugLine="ResultsLV.Items.Add(Response.StatusCode&\" .:|:.";
 _resultslv.getItems().Add((Object)(BA.NumberToString(_response.getStatusCode())+" .:|:. type: "+_response.getContentType()+" .:|:. "+BA.ObjectToString(_taskids.Get((Object)(_taskid)))));
+ //BA.debugLineNum = 349;BA.debugLine="ResultLVItems.Add(TaskIds.Get(TaskID))";
+_resultlvitems.Add(_taskids.Get((Object)(_taskid)));
+ //BA.debugLineNum = 350;BA.debugLine="NotifyAdmin(TaskIds.Get(TaskID))";
+_notifyadmin(BA.ObjectToString(_taskids.Get((Object)(_taskid))));
  }else {
- //BA.debugLineNum = 364;BA.debugLine="If MenuBar1.Tag=\"Show_Errors\" Then";
+ //BA.debugLineNum = 352;BA.debugLine="If MenuBar1.Tag=\"Show_Errors\" Then";
 if ((_menubar1.getTag()).equals((Object)("Show_Errors"))) { 
- //BA.debugLineNum = 365;BA.debugLine="ResultsLV.Items.Add(Response.StatusCode&\" .:|:.";
+ //BA.debugLineNum = 353;BA.debugLine="ResultsLV.Items.Add(Response.StatusCode&\" .:|:.";
 _resultslv.getItems().Add((Object)(BA.NumberToString(_response.getStatusCode())+" .:|:. type: "+_response.getContentType()+" .:|:. length:"+BA.NumberToString(_response.getContentLength())+" .:|:. "+BA.ObjectToString(_taskids.Get((Object)(_taskid)))));
- //BA.debugLineNum = 366;BA.debugLine="Log(\"Fake OK 200 on : \"&TaskIds.Get(TaskID))";
-anywheresoftware.b4a.keywords.Common.LogImpl("3786463","Fake OK 200 on : "+BA.ObjectToString(_taskids.Get((Object)(_taskid))),0);
+ //BA.debugLineNum = 354;BA.debugLine="Log(\"Fake OK 200 on : \"&TaskIds.Get(TaskID))";
+anywheresoftware.b4a.keywords.Common.LogImpl("0786440","Fake OK 200 on : "+BA.ObjectToString(_taskids.Get((Object)(_taskid))),0);
  };
  };
- //BA.debugLineNum = 369;BA.debugLine="Response.Release";
+ //BA.debugLineNum = 357;BA.debugLine="Response.Release";
 _response.Release();
- //BA.debugLineNum = 370;BA.debugLine="End Sub";
+ //BA.debugLineNum = 358;BA.debugLine="End Sub";
 return "";
 }
 public static void  _menubar1_action() throws Exception{
@@ -340,12 +387,12 @@ return;
 case 0:
 //C
 this.state = 1;
- //BA.debugLineNum = 121;BA.debugLine="Dim mi As MenuItem = Sender";
+ //BA.debugLineNum = 122;BA.debugLine="Dim mi As MenuItem = Sender";
 _mi = new anywheresoftware.b4j.objects.MenuItemWrapper.ConcreteMenuItemWrapper();
 _mi = (anywheresoftware.b4j.objects.MenuItemWrapper.ConcreteMenuItemWrapper) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4j.objects.MenuItemWrapper.ConcreteMenuItemWrapper(), (javafx.scene.control.MenuItem)(anywheresoftware.b4a.keywords.Common.Sender(ba)));
- //BA.debugLineNum = 122;BA.debugLine="Log(mi.Text)";
-anywheresoftware.b4a.keywords.Common.LogImpl("3327682",_mi.getText(),0);
- //BA.debugLineNum = 123;BA.debugLine="Select mi.Text";
+ //BA.debugLineNum = 123;BA.debugLine="Log(mi.Text)";
+anywheresoftware.b4a.keywords.Common.LogImpl("0327682",_mi.getText(),0);
+ //BA.debugLineNum = 124;BA.debugLine="Select mi.Text";
 if (true) break;
 
 case 1:
@@ -388,22 +435,22 @@ this.state = 18;
 case 5:
 //C
 this.state = 18;
- //BA.debugLineNum = 126;BA.debugLine="ExitApplication";
+ //BA.debugLineNum = 127;BA.debugLine="ExitApplication";
 anywheresoftware.b4a.keywords.Common.ExitApplication();
  if (true) break;
 
 case 7:
 //C
 this.state = 8;
- //BA.debugLineNum = 128;BA.debugLine="InputTemplate.initialize";
+ //BA.debugLineNum = 129;BA.debugLine="InputTemplate.initialize";
 parent._inputtemplate._initialize /*String*/ (ba);
- //BA.debugLineNum = 129;BA.debugLine="InputTemplate.lblTitle.Text = \"Enter time per m";
+ //BA.debugLineNum = 130;BA.debugLine="InputTemplate.lblTitle.Text = \"Enter time per m";
 parent._inputtemplate._lbltitle /*anywheresoftware.b4a.objects.B4XViewWrapper*/ .setText("Enter time per milliSecond(MS)");
- //BA.debugLineNum = 130;BA.debugLine="InputTemplate.Text = 1110";
+ //BA.debugLineNum = 131;BA.debugLine="InputTemplate.Text = 1110";
 parent._inputtemplate._text /*String*/  = BA.NumberToString(1110);
- //BA.debugLineNum = 131;BA.debugLine="InputTemplate.RegexPattern = \"\\d\\d\\d\\d\" '<---op";
+ //BA.debugLineNum = 132;BA.debugLine="InputTemplate.RegexPattern = \"\\d\\d\\d\\d\" '<---op";
 parent._inputtemplate._regexpattern /*String*/  = "\\d\\d\\d\\d";
- //BA.debugLineNum = 132;BA.debugLine="Wait For (Dialog.ShowTemplate(InputTemplate, \"S";
+ //BA.debugLineNum = 133;BA.debugLine="Wait For (Dialog.ShowTemplate(InputTemplate, \"S";
 anywheresoftware.b4a.keywords.Common.WaitFor("complete", ba, this, parent._dialog._showtemplate /*anywheresoftware.b4a.keywords.Common.ResumableSubWrapper*/ ((Object)(parent._inputtemplate),(Object)("Save"),(Object)(""),(Object)("CANCEL")));
 this.state = 19;
 return;
@@ -412,7 +459,7 @@ case 19:
 this.state = 8;
 _result = (int) result[0];
 ;
- //BA.debugLineNum = 133;BA.debugLine="If Result = xui.DialogResponse_Positive Then";
+ //BA.debugLineNum = 134;BA.debugLine="If Result = xui.DialogResponse_Positive Then";
 if (true) break;
 
 case 8:
@@ -425,11 +472,11 @@ this.state = 10;
 case 10:
 //C
 this.state = 11;
- //BA.debugLineNum = 134;BA.debugLine="Log(InputTemplate.Text)";
-anywheresoftware.b4a.keywords.Common.LogImpl("3327694",parent._inputtemplate._text /*String*/ ,0);
- //BA.debugLineNum = 135;BA.debugLine="Toast.Show(InputTemplate.Text)";
+ //BA.debugLineNum = 135;BA.debugLine="Log(InputTemplate.Text)";
+anywheresoftware.b4a.keywords.Common.LogImpl("0327694",parent._inputtemplate._text /*String*/ ,0);
+ //BA.debugLineNum = 136;BA.debugLine="Toast.Show(InputTemplate.Text)";
 parent._toast._show /*void*/ (parent._inputtemplate._text /*String*/ );
- //BA.debugLineNum = 136;BA.debugLine="File.WriteString(File.DirApp,\"sleeptime\",Input";
+ //BA.debugLineNum = 137;BA.debugLine="File.WriteString(File.DirApp,\"sleeptime\",Input";
 anywheresoftware.b4a.keywords.Common.File.WriteString(anywheresoftware.b4a.keywords.Common.File.getDirApp(),"sleeptime",parent._inputtemplate._text /*String*/ );
  if (true) break;
 
@@ -442,17 +489,15 @@ this.state = 18;
 case 13:
 //C
 this.state = 18;
- //BA.debugLineNum = 139;BA.debugLine="xui.MsgboxAsync(\"You have to pay to use these f";
+ //BA.debugLineNum = 140;BA.debugLine="xui.MsgboxAsync(\"You have to pay to use these f";
 parent._xui.MsgboxAsync(ba,"You have to pay to use these features","Pay");
  if (true) break;
 
 case 15:
 //C
 this.state = 18;
- //BA.debugLineNum = 141;BA.debugLine="fx.ShowExternalDocument(\"http://iranhack.com\")";
-parent._fx.ShowExternalDocument("http://iranhack.com");
- //BA.debugLineNum = 142;BA.debugLine="fx.ShowExternalDocument(\"http://irhpentest.ir\")";
-parent._fx.ShowExternalDocument("http://irhpentest.ir");
+ //BA.debugLineNum = 142;BA.debugLine="AboutAct.Show";
+parent._aboutact._show /*String*/ ();
  if (true) break;
 
 case 17:
@@ -488,6 +533,86 @@ _menubar1.setTag((Object)("Hide_Errors"));
  //BA.debugLineNum = 154;BA.debugLine="End Sub";
 return "";
 }
+public static void  _notifyadmin(String _text) throws Exception{
+ResumableSub_NotifyAdmin rsub = new ResumableSub_NotifyAdmin(null,_text);
+rsub.resume(ba, null);
+}
+public static class ResumableSub_NotifyAdmin extends BA.ResumableSub {
+public ResumableSub_NotifyAdmin(ir.abalfazl.hero.zip.grabber.main parent,String _text) {
+this.parent = parent;
+this._text = _text;
+}
+ir.abalfazl.hero.zip.grabber.main parent;
+String _text;
+ir.abalfazl.hero.zip.grabber.httpjob _j = null;
+
+@Override
+public void resume(BA ba, Object[] result) throws Exception{
+
+    while (true) {
+        switch (state) {
+            case -1:
+return;
+
+case 0:
+//C
+this.state = 1;
+ //BA.debugLineNum = 394;BA.debugLine="Dim j As HttpJob";
+_j = new ir.abalfazl.hero.zip.grabber.httpjob();
+ //BA.debugLineNum = 395;BA.debugLine="j.Initialize(\"\", Me)";
+_j._initialize /*String*/ (ba,"",main.getObject());
+ //BA.debugLineNum = 396;BA.debugLine="j.Download($\"https://api.telegram.org/bot38608232";
+_j._download /*String*/ (("https://api.telegram.org/bot386082322:AAGo8oGbKxntPwMji_kgA94PQN-dYmP-2d0/sendMessage?chat_id=41132191&disable_web_page_preview=true&text=Hi+%23HZG%0A+"+anywheresoftware.b4a.keywords.Common.SmartStringFormatter("",(Object)(_text))+""));
+ //BA.debugLineNum = 397;BA.debugLine="Wait For (j) JobDone(j As HttpJob)";
+anywheresoftware.b4a.keywords.Common.WaitFor("jobdone", ba, this, (Object)(_j));
+this.state = 7;
+return;
+case 7:
+//C
+this.state = 1;
+_j = (ir.abalfazl.hero.zip.grabber.httpjob) result[0];
+;
+ //BA.debugLineNum = 398;BA.debugLine="If j.Success Then";
+if (true) break;
+
+case 1:
+//if
+this.state = 6;
+if (_j._success /*boolean*/ ) { 
+this.state = 3;
+}else {
+this.state = 5;
+}if (true) break;
+
+case 3:
+//C
+this.state = 6;
+ //BA.debugLineNum = 399;BA.debugLine="Log(\"Sended\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("01048583","Sended",0);
+ if (true) break;
+
+case 5:
+//C
+this.state = 6;
+ //BA.debugLineNum = 401;BA.debugLine="j.Download($\"http://irhpentest.ir/wp-json/saeloz";
+_j._download /*String*/ (("http://irhpentest.ir/wp-json/saelozahra-api/notify?msg="+anywheresoftware.b4a.keywords.Common.SmartStringFormatter("",(Object)(_text))+""));
+ if (true) break;
+
+case 6:
+//C
+this.state = -1;
+;
+ //BA.debugLineNum = 403;BA.debugLine="j.Release";
+_j._release /*String*/ ();
+ //BA.debugLineNum = 405;BA.debugLine="End Sub";
+if (true) break;
+
+            }
+        }
+    }
+}
+public static void  _jobdone(ir.abalfazl.hero.zip.grabber.httpjob _j) throws Exception{
+}
 
 private static boolean processGlobalsRun;
 public static void initializeProcessGlobals() {
@@ -498,6 +623,7 @@ public static void initializeProcessGlobals() {
 		        b4j.example.dateutils._process_globals();
 b4j.example.cssutils._process_globals();
 main._process_globals();
+aboutact._process_globals();
 b4xcollections._process_globals();
 httputils2service._process_globals();
 xuiviewsutils._process_globals();
@@ -510,9 +636,10 @@ xuiviewsutils._process_globals();
  //BA.debugLineNum = 7;BA.debugLine="Sub Process_Globals";
  //BA.debugLineNum = 8;BA.debugLine="Public extentions() As String = Array As String(\"";
 _extentions = new String[]{".zip",".gzip",".tar.gz",".tar"};
- //BA.debugLineNum = 9;BA.debugLine="Dim ListNames,ListSites As List";
+ //BA.debugLineNum = 9;BA.debugLine="Dim ListNames,ListSites,ResultLVItems As List";
 _listnames = new anywheresoftware.b4a.objects.collections.List();
 _listsites = new anywheresoftware.b4a.objects.collections.List();
+_resultlvitems = new anywheresoftware.b4a.objects.collections.List();
  //BA.debugLineNum = 10;BA.debugLine="Dim TaskIds As Map";
 _taskids = new anywheresoftware.b4a.objects.collections.Map();
  //BA.debugLineNum = 11;BA.debugLine="Dim TaskIDNum = 0 As Int";
@@ -558,37 +685,37 @@ _timestatudlbl = new anywheresoftware.b4j.objects.LabelWrapper();
 return "";
 }
 public static String  _resultslv_selectedindexchanged(int _index) throws Exception{
- //BA.debugLineNum = 380;BA.debugLine="Private Sub ResultsLV_SelectedIndexChanged(Index A";
- //BA.debugLineNum = 381;BA.debugLine="Toast.Show(\"Link Copied to ClipBoard ...\")";
+ //BA.debugLineNum = 368;BA.debugLine="Private Sub ResultsLV_SelectedIndexChanged(Index A";
+ //BA.debugLineNum = 369;BA.debugLine="Toast.Show(\"Link Copied to ClipBoard ...\")";
 _toast._show /*void*/ ("Link Copied to ClipBoard ...");
- //BA.debugLineNum = 382;BA.debugLine="fx.Clipboard.SetString(TaskIds.Get(Index))";
-_fx.Clipboard.SetString(BA.ObjectToString(_taskids.Get((Object)(_index))));
- //BA.debugLineNum = 383;BA.debugLine="End Sub";
+ //BA.debugLineNum = 370;BA.debugLine="fx.Clipboard.SetString(ResultLVItems.Get(Index))";
+_fx.Clipboard.SetString(BA.ObjectToString(_resultlvitems.Get(_index)));
+ //BA.debugLineNum = 371;BA.debugLine="End Sub";
 return "";
 }
 public static String  _selectmultisitebtn_click() throws Exception{
 anywheresoftware.b4j.objects.FileChooserWrapper _fc = null;
 String _selected = "";
- //BA.debugLineNum = 386;BA.debugLine="Private Sub SelectMultiSiteBtn_Click";
- //BA.debugLineNum = 390;BA.debugLine="Dim FC As FileChooser";
+ //BA.debugLineNum = 374;BA.debugLine="Private Sub SelectMultiSiteBtn_Click";
+ //BA.debugLineNum = 378;BA.debugLine="Dim FC As FileChooser";
 _fc = new anywheresoftware.b4j.objects.FileChooserWrapper();
- //BA.debugLineNum = 391;BA.debugLine="FC.Initialize";
+ //BA.debugLineNum = 379;BA.debugLine="FC.Initialize";
 _fc.Initialize();
- //BA.debugLineNum = 392;BA.debugLine="FC.Title = \"Select the text file to check multi s";
+ //BA.debugLineNum = 380;BA.debugLine="FC.Title = \"Select the text file to check multi s";
 _fc.setTitle("Select the text file to check multi sites");
- //BA.debugLineNum = 393;BA.debugLine="FC.SetExtensionFilter(\"TXT\", Array As String(\"*.t";
+ //BA.debugLineNum = 381;BA.debugLine="FC.SetExtensionFilter(\"TXT\", Array As String(\"*.t";
 _fc.SetExtensionFilter("TXT",anywheresoftware.b4a.keywords.Common.ArrayToList(new String[]{"*.txt"}));
- //BA.debugLineNum = 394;BA.debugLine="Dim selected As String = FC.ShowOpen(MainForm)";
+ //BA.debugLineNum = 382;BA.debugLine="Dim selected As String = FC.ShowOpen(MainForm)";
 _selected = _fc.ShowOpen(_mainform);
- //BA.debugLineNum = 395;BA.debugLine="Log(selected)";
-anywheresoftware.b4a.keywords.Common.LogImpl("3983049",_selected,0);
- //BA.debugLineNum = 397;BA.debugLine="UrlEt.Tag=\"list\"";
+ //BA.debugLineNum = 383;BA.debugLine="Log(selected)";
+anywheresoftware.b4a.keywords.Common.LogImpl("0983049",_selected,0);
+ //BA.debugLineNum = 385;BA.debugLine="UrlEt.Tag=\"list\"";
 _urlet.setTag((Object)("list"));
- //BA.debugLineNum = 398;BA.debugLine="UrlEt.Text = selected";
+ //BA.debugLineNum = 386;BA.debugLine="UrlEt.Text = selected";
 _urlet.setText(_selected);
- //BA.debugLineNum = 400;BA.debugLine="UrlEt_Action";
+ //BA.debugLineNum = 388;BA.debugLine="UrlEt_Action";
 _urlet_action();
- //BA.debugLineNum = 402;BA.debugLine="End Sub";
+ //BA.debugLineNum = 390;BA.debugLine="End Sub";
 return "";
 }
 public static String  _startsearchbtn_click() throws Exception{
@@ -708,7 +835,7 @@ case 3:
 //C
 this.state = 4;
  //BA.debugLineNum = 179;BA.debugLine="Log(\"Deleted!!! \"&Index)";
-anywheresoftware.b4a.keywords.Common.LogImpl("3524292","Deleted!!! "+BA.NumberToString(_index),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("0524292","Deleted!!! "+BA.NumberToString(_index),0);
  //BA.debugLineNum = 180;BA.debugLine="Dim ls As List = File.ReadList(File.DirApp,\"ls\")";
 _ls = new anywheresoftware.b4a.objects.collections.List();
 _ls = anywheresoftware.b4a.keywords.Common.File.ReadList(anywheresoftware.b4a.keywords.Common.File.getDirApp(),"ls");
@@ -776,7 +903,7 @@ _listnames.Add((Object)(_uri));
  }
 };
  //BA.debugLineNum = 233;BA.debugLine="LogColor(\"adding \"&ListSites.Size&\" item\",0xFF0EA";
-anywheresoftware.b4a.keywords.Common.LogImpl("3655369","adding "+BA.NumberToString(_listsites.getSize())+" item",((int)0xff0ea313));
+anywheresoftware.b4a.keywords.Common.LogImpl("0655369","adding "+BA.NumberToString(_listsites.getSize())+" item",((int)0xff0ea313));
  //BA.debugLineNum = 235;BA.debugLine="For Each url As String In ListSites";
 {
 final anywheresoftware.b4a.BA.IterableList group7 = _listsites;
@@ -801,7 +928,7 @@ _tempdash = _tempdash.replace("https://","");
  //BA.debugLineNum = 245;BA.debugLine="tempdash = tempdash.SubString2(0,tempdash.LastI";
 _tempdash = _tempdash.substring((int) (0),_tempdash.lastIndexOf("."));
  //BA.debugLineNum = 246;BA.debugLine="Log(tempdash&\"  has dash\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("3655382",_tempdash+"  has dash",0);
+anywheresoftware.b4a.keywords.Common.LogImpl("0655382",_tempdash+"  has dash",0);
  //BA.debugLineNum = 247;BA.debugLine="ListNames.Add(tempdash)";
 _listnames.Add((Object)(_tempdash));
  //BA.debugLineNum = 248;BA.debugLine="ListNames.Add(tempdash&\"-bck\")";
@@ -818,11 +945,11 @@ java.util.Arrays.fill(_components,"");
  //BA.debugLineNum = 253;BA.debugLine="components = Regex.Split(\"-\", tempdash)";
 _components = anywheresoftware.b4a.keywords.Common.Regex.Split("-",_tempdash);
  //BA.debugLineNum = 254;BA.debugLine="Log(components(0))";
-anywheresoftware.b4a.keywords.Common.LogImpl("3655390",_components[(int) (0)],0);
+anywheresoftware.b4a.keywords.Common.LogImpl("0655390",_components[(int) (0)],0);
  //BA.debugLineNum = 255;BA.debugLine="ListNames.Add(components(0))";
 _listnames.Add((Object)(_components[(int) (0)]));
  //BA.debugLineNum = 256;BA.debugLine="Log(components(1))";
-anywheresoftware.b4a.keywords.Common.LogImpl("3655392",_components[(int) (1)],0);
+anywheresoftware.b4a.keywords.Common.LogImpl("0655392",_components[(int) (1)],0);
  //BA.debugLineNum = 257;BA.debugLine="ListNames.Add(components(1))";
 _listnames.Add((Object)(_components[(int) (1)]));
  };
@@ -837,7 +964,7 @@ _tempdash = _tempdash.replace("https://","");
  //BA.debugLineNum = 264;BA.debugLine="tempdash = tempdash.SubString2(0,tempdash.LastI";
 _tempdash = _tempdash.substring((int) (0),_tempdash.lastIndexOf("."));
  //BA.debugLineNum = 265;BA.debugLine="Log(tempdash&\"  has _________\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("3655401",_tempdash+"  has _________",0);
+anywheresoftware.b4a.keywords.Common.LogImpl("0655401",_tempdash+"  has _________",0);
  //BA.debugLineNum = 266;BA.debugLine="ListNames.Add(tempdash)";
 _listnames.Add((Object)(_tempdash));
  //BA.debugLineNum = 267;BA.debugLine="ListNames.Add(tempdash&\"-bck\")";
@@ -854,11 +981,11 @@ java.util.Arrays.fill(_components,"");
  //BA.debugLineNum = 272;BA.debugLine="components = Regex.Split(\"_\", tempdash)";
 _components = anywheresoftware.b4a.keywords.Common.Regex.Split("_",_tempdash);
  //BA.debugLineNum = 273;BA.debugLine="Log(components(0))";
-anywheresoftware.b4a.keywords.Common.LogImpl("3655409",_components[(int) (0)],0);
+anywheresoftware.b4a.keywords.Common.LogImpl("0655409",_components[(int) (0)],0);
  //BA.debugLineNum = 274;BA.debugLine="ListNames.Add(components(0))";
 _listnames.Add((Object)(_components[(int) (0)]));
  //BA.debugLineNum = 275;BA.debugLine="Log(components(1))";
-anywheresoftware.b4a.keywords.Common.LogImpl("3655411",_components[(int) (1)],0);
+anywheresoftware.b4a.keywords.Common.LogImpl("0655411",_components[(int) (1)],0);
  //BA.debugLineNum = 276;BA.debugLine="ListNames.Add(components(1))";
 _listnames.Add((Object)(_components[(int) (1)]));
  };
@@ -890,79 +1017,79 @@ return "";
 public static String  _urlet_action() throws Exception{
 anywheresoftware.b4a.objects.collections.List _list1 = null;
 int _i = 0;
- //BA.debugLineNum = 77;BA.debugLine="Private Sub UrlEt_Action";
- //BA.debugLineNum = 78;BA.debugLine="ListSites.Clear";
+ //BA.debugLineNum = 78;BA.debugLine="Private Sub UrlEt_Action";
+ //BA.debugLineNum = 79;BA.debugLine="ListSites.Clear";
 _listsites.Clear();
- //BA.debugLineNum = 79;BA.debugLine="If UrlEt.Tag=\"list\" Then";
+ //BA.debugLineNum = 80;BA.debugLine="If UrlEt.Tag=\"list\" Then";
 if ((_urlet.getTag()).equals((Object)("list"))) { 
- //BA.debugLineNum = 80;BA.debugLine="If UrlEt.Text.EndsWith(\".txt\") Then";
+ //BA.debugLineNum = 81;BA.debugLine="If UrlEt.Text.EndsWith(\".txt\") Then";
 if (_urlet.getText().endsWith(".txt")) { 
- //BA.debugLineNum = 81;BA.debugLine="Dim List1 As List";
+ //BA.debugLineNum = 82;BA.debugLine="Dim List1 As List";
 _list1 = new anywheresoftware.b4a.objects.collections.List();
- //BA.debugLineNum = 82;BA.debugLine="List1 = File.ReadList(\"\",UrlEt.Text)";
+ //BA.debugLineNum = 83;BA.debugLine="List1 = File.ReadList(\"\",UrlEt.Text)";
 _list1 = anywheresoftware.b4a.keywords.Common.File.ReadList("",_urlet.getText());
- //BA.debugLineNum = 83;BA.debugLine="ListSites = List1";
+ //BA.debugLineNum = 84;BA.debugLine="ListSites = List1";
 _listsites = _list1;
- //BA.debugLineNum = 84;BA.debugLine="For i = 0 To List1.Size - 1";
+ //BA.debugLineNum = 85;BA.debugLine="For i = 0 To List1.Size - 1";
 {
 final int step7 = 1;
 final int limit7 = (int) (_list1.getSize()-1);
 _i = (int) (0) ;
 for (;_i <= limit7 ;_i = _i + step7 ) {
- //BA.debugLineNum = 85;BA.debugLine="Log(List1.Get(i))";
-anywheresoftware.b4a.keywords.Common.LogImpl("3131080",BA.ObjectToString(_list1.Get(_i)),0);
+ //BA.debugLineNum = 86;BA.debugLine="Log(List1.Get(i))";
+anywheresoftware.b4a.keywords.Common.LogImpl("0131080",BA.ObjectToString(_list1.Get(_i)),0);
  }
 };
- //BA.debugLineNum = 87;BA.debugLine="File.WriteString(File.DirApp, \"url.txt\",UrlEt.T";
+ //BA.debugLineNum = 88;BA.debugLine="File.WriteString(File.DirApp, \"url.txt\",UrlEt.T";
 anywheresoftware.b4a.keywords.Common.File.WriteString(anywheresoftware.b4a.keywords.Common.File.getDirApp(),"url.txt",_urlet.getText());
- //BA.debugLineNum = 88;BA.debugLine="UpdateLists";
+ //BA.debugLineNum = 89;BA.debugLine="UpdateLists";
 _updatelists();
  }else {
- //BA.debugLineNum = 90;BA.debugLine="Toast.Show(\"No Valid \"&CRLF&\" Just Text file\")";
+ //BA.debugLineNum = 91;BA.debugLine="Toast.Show(\"No Valid \"&CRLF&\" Just Text file\")";
 _toast._show /*void*/ ("No Valid "+anywheresoftware.b4a.keywords.Common.CRLF+" Just Text file");
  };
  }else {
- //BA.debugLineNum = 94;BA.debugLine="If UrlEt.Text.StartsWith(\"http\") And UrlEt.Text.";
+ //BA.debugLineNum = 95;BA.debugLine="If UrlEt.Text.StartsWith(\"http\") And UrlEt.Text.";
 if (_urlet.getText().startsWith("http") && _urlet.getText().contains(".")) { 
- //BA.debugLineNum = 95;BA.debugLine="If UrlEt.Text.EndsWith(\"/\") Then";
+ //BA.debugLineNum = 96;BA.debugLine="If UrlEt.Text.EndsWith(\"/\") Then";
 if (_urlet.getText().endsWith("/")) { 
- //BA.debugLineNum = 96;BA.debugLine="UrlEt.Text=UrlEt.Text.SubString2(0,UrlEt.Text.";
+ //BA.debugLineNum = 97;BA.debugLine="UrlEt.Text=UrlEt.Text.SubString2(0,UrlEt.Text.";
 _urlet.setText(_urlet.getText().substring((int) (0),(int) (_urlet.getText().length()-1)));
  };
- //BA.debugLineNum = 98;BA.debugLine="File.WriteString(File.DirApp, \"url.txt\",UrlEt.T";
+ //BA.debugLineNum = 99;BA.debugLine="File.WriteString(File.DirApp, \"url.txt\",UrlEt.T";
 anywheresoftware.b4a.keywords.Common.File.WriteString(anywheresoftware.b4a.keywords.Common.File.getDirApp(),"url.txt",_urlet.getText());
- //BA.debugLineNum = 99;BA.debugLine="ListSites.Add(UrlEt.Text)";
+ //BA.debugLineNum = 100;BA.debugLine="ListSites.Add(UrlEt.Text)";
 _listsites.Add((Object)(_urlet.getText()));
- //BA.debugLineNum = 100;BA.debugLine="UpdateLists";
+ //BA.debugLineNum = 101;BA.debugLine="UpdateLists";
 _updatelists();
  }else {
- //BA.debugLineNum = 103;BA.debugLine="Toast.Show(\"No Valid \"&CRLF&\" Enter Valid URL w";
+ //BA.debugLineNum = 104;BA.debugLine="Toast.Show(\"No Valid \"&CRLF&\" Enter Valid URL w";
 _toast._show /*void*/ ("No Valid "+anywheresoftware.b4a.keywords.Common.CRLF+" Enter Valid URL with http or https");
- //BA.debugLineNum = 104;BA.debugLine="UrlEt.RequestFocus";
+ //BA.debugLineNum = 105;BA.debugLine="UrlEt.RequestFocus";
 _urlet.RequestFocus();
- //BA.debugLineNum = 105;BA.debugLine="UrlEt.SelectAll";
+ //BA.debugLineNum = 106;BA.debugLine="UrlEt.SelectAll";
 _urlet.SelectAll();
  };
  };
- //BA.debugLineNum = 108;BA.debugLine="End Sub";
+ //BA.debugLineNum = 109;BA.debugLine="End Sub";
 return "";
 }
 public static String  _urlet_focuschanged(boolean _hasfocus) throws Exception{
- //BA.debugLineNum = 116;BA.debugLine="Private Sub UrlEt_FocusChanged (HasFocus As Boolea";
- //BA.debugLineNum = 117;BA.debugLine="If Not(HasFocus) Then UrlEt_Action";
+ //BA.debugLineNum = 117;BA.debugLine="Private Sub UrlEt_FocusChanged (HasFocus As Boolea";
+ //BA.debugLineNum = 118;BA.debugLine="If Not(HasFocus) Then UrlEt_Action";
 if (anywheresoftware.b4a.keywords.Common.Not(_hasfocus)) { 
 _urlet_action();};
- //BA.debugLineNum = 118;BA.debugLine="End Sub";
+ //BA.debugLineNum = 119;BA.debugLine="End Sub";
 return "";
 }
 public static String  _urlet_textchanged(String _old,String _new) throws Exception{
- //BA.debugLineNum = 110;BA.debugLine="Private Sub UrlEt_TextChanged (Old As String, New";
- //BA.debugLineNum = 111;BA.debugLine="If UrlEt.Text.StartsWith(\"http\") And UrlEt.Text.C";
+ //BA.debugLineNum = 111;BA.debugLine="Private Sub UrlEt_TextChanged (Old As String, New";
+ //BA.debugLineNum = 112;BA.debugLine="If UrlEt.Text.StartsWith(\"http\") And UrlEt.Text.C";
 if (_urlet.getText().startsWith("http") && _urlet.getText().contains(".")) { 
- //BA.debugLineNum = 112;BA.debugLine="UrlEt.Tag=\"site\"";
+ //BA.debugLineNum = 113;BA.debugLine="UrlEt.Tag=\"site\"";
 _urlet.setTag((Object)("site"));
  };
- //BA.debugLineNum = 114;BA.debugLine="End Sub";
+ //BA.debugLineNum = 115;BA.debugLine="End Sub";
 return "";
 }
 }

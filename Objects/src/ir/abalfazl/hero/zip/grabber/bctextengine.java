@@ -71,6 +71,7 @@ public boolean _rtlaware = false;
 public b4j.example.dateutils _dateutils = null;
 public b4j.example.cssutils _cssutils = null;
 public ir.abalfazl.hero.zip.grabber.main _main = null;
+public ir.abalfazl.hero.zip.grabber.aboutact _aboutact = null;
 public ir.abalfazl.hero.zip.grabber.b4xcollections _b4xcollections = null;
 public ir.abalfazl.hero.zip.grabber.httputils2service _httputils2service = null;
 public ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
@@ -2619,7 +2620,7 @@ _sb.Append(_tc.Buffer /*String[]*/ [_i]);
  }
 };
  //BA.debugLineNum = 1166;BA.debugLine="Log(sb.ToString)";
-__c.LogImpl("98323078",_sb.ToString(),0);
+__c.LogImpl("98454150",_sb.ToString(),0);
  //BA.debugLineNum = 1167;BA.debugLine="End Sub";
 return "";
 }

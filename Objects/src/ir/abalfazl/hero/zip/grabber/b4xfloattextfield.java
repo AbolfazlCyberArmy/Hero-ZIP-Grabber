@@ -58,6 +58,7 @@ public long _lastswitchtextfieldtime = 0L;
 public b4j.example.dateutils _dateutils = null;
 public b4j.example.cssutils _cssutils = null;
 public ir.abalfazl.hero.zip.grabber.main _main = null;
+public ir.abalfazl.hero.zip.grabber.aboutact _aboutact = null;
 public ir.abalfazl.hero.zip.grabber.b4xcollections _b4xcollections = null;
 public ir.abalfazl.hero.zip.grabber.httputils2service _httputils2service = null;
 public ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
@@ -347,7 +348,7 @@ if (_passwordmode && _multiline) {
  //BA.debugLineNum = 90;BA.debugLine="Multiline = False";
 _multiline = __c.False;
  //BA.debugLineNum = 91;BA.debugLine="Log(\"Multiline not supported with password mode.";
-__c.LogImpl("921037080","Multiline not supported with password mode.",0);
+__c.LogImpl("921168152","Multiline not supported with password mode.",0);
  };
  //BA.debugLineNum = 93;BA.debugLine="CreateTextFieldAll(PasswordMode, PassedLabel.Font";
 _createtextfieldall(_passwordmode,_passedlabel.getFont(),_xui.PaintOrColorToColor((Object)(_lbl.getTextColor())));

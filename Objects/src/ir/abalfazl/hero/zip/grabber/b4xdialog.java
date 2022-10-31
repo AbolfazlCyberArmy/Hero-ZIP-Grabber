@@ -55,6 +55,7 @@ public anywheresoftware.b4a.objects.collections.Map _buttonsstate = null;
 public b4j.example.dateutils _dateutils = null;
 public b4j.example.cssutils _cssutils = null;
 public ir.abalfazl.hero.zip.grabber.main _main = null;
+public ir.abalfazl.hero.zip.grabber.aboutact _aboutact = null;
 public ir.abalfazl.hero.zip.grabber.b4xcollections _b4xcollections = null;
 public ir.abalfazl.hero.zip.grabber.httputils2service _httputils2service = null;
 public ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
@@ -193,7 +194,7 @@ _setavg(_bc,_x,_y,_clrs,_temp);
  }
 };
  //BA.debugLineNum = 320;BA.debugLine="Log(\"Time: \" & (DateTime.Now - n))";
-__c.LogImpl("920578340","Time: "+BA.NumberToString((__c.DateTime.getNow()-_n)),0);
+__c.LogImpl("920709412","Time: "+BA.NumberToString((__c.DateTime.getNow()-_n)),0);
  //BA.debugLineNum = 321;BA.debugLine="Return bc";
 if (true) return _bc;
  //BA.debugLineNum = 322;BA.debugLine="End Sub";

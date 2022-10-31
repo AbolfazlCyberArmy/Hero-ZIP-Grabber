@@ -28,6 +28,7 @@ public int _mlength = 0;
 public b4j.example.dateutils _dateutils = null;
 public b4j.example.cssutils _cssutils = null;
 public ir.abalfazl.hero.zip.grabber.main _main = null;
+public ir.abalfazl.hero.zip.grabber.aboutact _aboutact = null;
 public ir.abalfazl.hero.zip.grabber.b4xcollections _b4xcollections = null;
 public ir.abalfazl.hero.zip.grabber.httputils2service _httputils2service = null;
 public ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
@@ -169,7 +170,7 @@ byte[] _afterindex = null;
 if (_index>=_mlength) { 
  //BA.debugLineNum = 47;BA.debugLine="If Index > mLength Then Log(\"Index too large\")";
 if (_index>_mlength) { 
-__c.LogImpl("99240578","Index too large",0);};
+__c.LogImpl("99371650","Index too large",0);};
  //BA.debugLineNum = 48;BA.debugLine="Append(Data)";
 _append(_data);
  }else {
@@ -211,7 +212,7 @@ public String  _set(int _index,byte[] _data) throws Exception{
 if (_index>=_mlength) { 
  //BA.debugLineNum = 60;BA.debugLine="If Index > mLength Then Log(\"Index too large\")";
 if (_index>_mlength) { 
-__c.LogImpl("99306114","Index too large",0);};
+__c.LogImpl("99437186","Index too large",0);};
  //BA.debugLineNum = 61;BA.debugLine="Append(Data)";
 _append(_data);
  }else {

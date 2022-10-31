@@ -24,6 +24,7 @@ static {
 public static b4j.example.dateutils _dateutils = null;
 public static b4j.example.cssutils _cssutils = null;
 public static ir.abalfazl.hero.zip.grabber.main _main = null;
+public static ir.abalfazl.hero.zip.grabber.aboutact _aboutact = null;
 public static ir.abalfazl.hero.zip.grabber.httputils2service _httputils2service = null;
 public static ir.abalfazl.hero.zip.grabber.xuiviewsutils _xuiviewsutils = null;
 public static ir.abalfazl.hero.zip.grabber.b4xbitset  _createbitset(int _size) throws Exception{

@@ -26,6 +26,7 @@ public static anywheresoftware.b4a.objects.B4XViewWrapper.XUI _xui = null;
 public static b4j.example.dateutils _dateutils = null;
 public static b4j.example.cssutils _cssutils = null;
 public static ir.abalfazl.hero.zip.grabber.main _main = null;
+public static ir.abalfazl.hero.zip.grabber.aboutact _aboutact = null;
 public static ir.abalfazl.hero.zip.grabber.b4xcollections _b4xcollections = null;
 public static ir.abalfazl.hero.zip.grabber.httputils2service _httputils2service = null;
 public static String  _addstubtoclvifneeded(b4j.example.customlistview _customlistview1,int _color) throws Exception{

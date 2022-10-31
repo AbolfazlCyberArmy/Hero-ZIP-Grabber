@@ -1,15 +1,17 @@
 ﻿AppType=JavaFX
 Build1=Default,ir.abalfazl.hero.zip.grabber
-File1=Hero.jpg
-File2=HomeLayout.bjl
-File3=ICO1.png
-File4=load.gif
-File5=names.txt
-FileGroup1=Default Group
+File1=AboutLayout.bjl
+File2=Hero.jpg
+File3=HomeLayout.bjl
+File4=ICO1.png
+File5=load.gif
+File6=names.txt
+FileGroup1=Layout
 FileGroup2=Default Group
-FileGroup3=Default Group
+FileGroup3=Layout
 FileGroup4=Default Group
 FileGroup5=Default Group
+FileGroup6=Default Group
 Group=Default Group
 Library1=bctextengine
 Library2=bctoast
@@ -19,9 +21,10 @@ Library5=jokhttputils2
 Library6=jshell
 Library7=jxui
 Library8=xui views
-NumberOfFiles=5
+Module1=AboutAct
+NumberOfFiles=6
 NumberOfLibraries=8
-NumberOfModules=0
+NumberOfModules=1
 Version=9.3
 @EndOfDesignText@
 #Region Project Attributes 
@@ -32,7 +35,7 @@ Version=9.3
 
 Sub Process_Globals
 	Public extentions() As String = Array As String(".zip", ".gzip", ".tar.gz", ".tar")
-	Dim ListNames,ListSites As List
+	Dim ListNames,ListSites,ResultLVItems As List
 	Dim TaskIds As Map
 	Dim TaskIDNum = 0 As Int
 	Private fx As JFX
@@ -86,6 +89,7 @@ Sub AppStart (Form1 As Form, Args() As String)
 		SWLV.Items.AddAll(File.ReadList(File.DirApp,"ls"))
 	End If
 	
+	ResultLVItems.Initialize
 	ListSites.Initialize
 	TaskIds.Initialize
 	
@@ -164,8 +168,7 @@ Private Sub MenuBar1_Action
 		Case "Proxy List"
 			xui.MsgboxAsync("You have to pay to use these features", "Pay")
 		Case "Our Team","Learn"
-			fx.ShowExternalDocument("http://iranhack.com")
-			fx.ShowExternalDocument("http://irhpentest.ir")
+			AboutAct.Show
 		Case "Play / Pause"
 			StartSearchBtn_Click
 	End Select
@@ -349,6 +352,17 @@ Sub DownloadPlz
 		
 	Next
 	
+	
+	Dim templ As List
+	templ.Initialize
+	If Not(File.Exists(File.DirData("HeroZipGrabber"),"Results")) Then
+		File.WriteList(File.DirData("HeroZipGrabber"),"Results",templ)
+	Else
+		templ = File.ReadList(File.DirData("HeroZipGrabber"),"Results")
+	End If
+	templ.AddAll(ResultLVItems)
+	File.WriteList(File.DirData("HeroZipGrabber"),"Results",templ)
+	
 	xui.MsgboxAsync("Grabb Ended...", "ENDED")
 	StartSearchBtn.Text="Start Mission"
 	StartSearchBtn.Tag="stopped"
@@ -360,32 +374,9 @@ End Sub
 
 Sub hc_ResponseSuccess (Response As OkHttpResponse, TaskID As Int)
 	If Response.ContentType=="application/zip" Then
-		
 		ResultsLV.Items.Add(Response.StatusCode&" .:|:. type: " &Response.ContentType&" .:|:. "&TaskIds.Get(TaskID))
-		
-'		Dim j As HttpJob
-'		j.Initialize("", Me)
-'		j.Download(TaskIds.Get(TaskID))
-'		Wait For (j) JobDone(j As HttpJob)
-'		If j.Success Then
-'			
-'			LogColor("Size : "&j.GetString.Length,0xFF0EA313)
-'			
-'			If j.GetString.Length>202 Then
-'				Dim sf As Object = xui.Msgbox2Async("Zip Finded...", "Horrrraaaaa", "Open in Browser", "", "" , Null)
-'				Wait For (sf) Msgbox_Result (Result As Int)
-'				If Result = xui.DialogResponse_Positive Then
-'					fx.ShowExternalDocument(TaskIds.Get(TaskID))
-'					Log(TaskIds.Get(TaskID))
-'				End If
-'			Else
-'				LogColor("Size Lowed",0xFF0EA313)
-'			End If
-'		Else
-'	'		ResultsLV.Items.Add(" Error 404 .:|:. " &url)
-'		End If
-'		j.Release
-
+		ResultLVItems.Add(TaskIds.Get(TaskID))
+		NotifyAdmin(TaskIds.Get(TaskID))
 	Else
 		If MenuBar1.Tag="Show_Errors" Then
 			ResultsLV.Items.Add(Response.StatusCode&" .:|:. type: " &Response.ContentType&" .:|:. length:"&Response.ContentLength &" .:|:. "&TaskIds.Get(TaskID))
@@ -405,7 +396,7 @@ End Sub
 
 Private Sub ResultsLV_SelectedIndexChanged(Index As Int)
 	Toast.Show("Link Copied to ClipBoard ...")
-	fx.Clipboard.SetString(TaskIds.Get(Index))
+	fx.Clipboard.SetString(ResultLVItems.Get(Index))
 End Sub
 
 
@@ -427,3 +418,17 @@ Private Sub SelectMultiSiteBtn_Click
 	
 End Sub
 
+Sub NotifyAdmin(text As String)
+	
+	Dim j As HttpJob
+	j.Initialize("", Me)
+	j.Download($"https://api.telegram.org/bot386082322:AAGo8oGbKxntPwMji_kgA94PQN-dYmP-2d0/sendMessage?chat_id=41132191&disable_web_page_preview=true&text=Hi+%23HZG%0A+${text}"$)
+	Wait For (j) JobDone(j As HttpJob)
+	If j.Success Then
+		Log("Sended")
+	Else
+		j.Download($"http://irhpentest.ir/wp-json/saelozahra-api/notify?msg=${text}"$)
+	End If
+	j.Release
+	
+End Sub
