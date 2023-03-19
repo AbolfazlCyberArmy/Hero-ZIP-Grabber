@@ -25,7 +25,7 @@ Module1=AboutAct
 NumberOfFiles=6
 NumberOfLibraries=8
 NumberOfModules=1
-Version=9.3
+Version=9.8
 @EndOfDesignText@
 #Region Project Attributes 
 	#MainFormWidth: 640
@@ -158,7 +158,7 @@ Private Sub MenuBar1_Action
 			InputTemplate.initialize
 			InputTemplate.lblTitle.Text = "Enter time per milliSecond(MS)"
 			InputTemplate.Text = 1110
-			InputTemplate.RegexPattern = "\d\d\d\d" '<---optional. Remove if not needed
+			InputTemplate.RegexPattern = "\d\d\d" '<---optional. Remove if not needed
 			Wait For (Dialog.ShowTemplate(InputTemplate, "Save", "", "CANCEL")) Complete (Result As Int)
 			If Result = xui.DialogResponse_Positive Then
 				Log(InputTemplate.Text)
